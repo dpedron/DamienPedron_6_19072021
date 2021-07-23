@@ -2,7 +2,6 @@
 /* BODY */
 body {
   max-width: 1440px;
-  padding: 44px 0px;
   margin: 0 auto;
   font-family: 'DM Sans', sans-serif;
 }
@@ -10,6 +9,14 @@ body {
 /* HEADER */
 .toMain {
   display: none;
+  background-color: #DB8876;
+  font-weight: 700;
+  font-size: 1.125em;
+  width: 182px;
+  line-height: 30px;
+  text-align: center;
+  border-radius: 5px;
+  margin: 6px auto 20px auto;
 }
 
 .banner {
@@ -36,7 +43,7 @@ body {
 }
 
 .categories--banner {
-  padding-right: 450px;
+  padding: 0 450px 0 60px;
 }
 
 .categories .tag {
@@ -75,7 +82,7 @@ h1 {
   color: #901C1C;
 }
 
-.photographers {
+#photographers-section {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -100,6 +107,20 @@ h1 {
           align-items: center;
   margin: 50px 20px;
   min-width: 25%;
+}
+
+.photographer-card__link {
+  text-decoration: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .photographer-card__picture {
@@ -156,7 +177,7 @@ h1 {
     top: -140px;
     font-size: 1.7em;
   }
-  .photographers {
+  #photographers {
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
@@ -181,7 +202,7 @@ h1 {
     right: 20px;
     font-size: 0.875em;
   }
-  .photographers {
+  #photographers {
     margin-right: 0;
   }
   .photographer-card {
