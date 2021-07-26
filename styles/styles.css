@@ -2,13 +2,19 @@
 /* BODY */
 body {
   max-width: 1440px;
-  margin: 0 auto;
+  margin: 20px auto 0 auto;
   font-family: 'DM Sans', sans-serif;
 }
 
 /* HEADER */
-.toMain {
+#to-main {
   display: none;
+  position: fixed;
+  text-decoration: none;
+  color: black;
+  left: 50%;
+  margin: -14px 0 0 -107px;
+  z-index: 9999;
   background-color: #DB8876;
   font-weight: 700;
   font-size: 1.125em;
@@ -16,7 +22,6 @@ body {
   line-height: 30px;
   text-align: center;
   border-radius: 5px;
-  margin: 6px auto 20px auto;
 }
 
 .banner {
@@ -130,16 +135,11 @@ h1 {
   overflow: hidden;
 }
 
-.photographer-card__picture img {
-  -o-object-position: -10px -10px;
-     object-position: -10px -10px;
-}
-
 .photographer-card__name {
   color: #D3573C;
   font-size: 2.25em;
   font-weight: 400;
-  margin-bottom: 0;
+  margin: 15px 0 0 0;
 }
 
 .photographer-card__location {
