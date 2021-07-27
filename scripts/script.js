@@ -52,7 +52,7 @@ window.onload = function() {
     .then(response => response.json())    
     .then(function(data){
         for(i=0;i<data.photographers.length;i++){
-            photographerPortrait.src = "../images/pictures/portraits/" + data.photographers[i].portrait;
+            photographerPortrait.src = "./images/pictures/portraits/" + data.photographers[i].portrait;
             photographerName.innerText = data.photographers[i].name;
             photographerLocation.innerText = data.photographers[i].city + ", " + data.photographers[i].country;
             photographerTagline.innerText = data.photographers[i].tagline;
