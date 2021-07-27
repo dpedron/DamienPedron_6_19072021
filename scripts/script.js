@@ -48,7 +48,7 @@ window.onload = function() {
 
     /* Complete photographers cards informations */
 
-    fetch("../json/fisheyedata.json")
+    fetch("../json/FishEyeData.json")
     .then(response => response.json())    
     .then(function(data){
         for(i=0;i<data.photographers.length;i++){
