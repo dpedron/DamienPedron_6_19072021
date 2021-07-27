@@ -1,10 +1,9 @@
-
 window.onload = function() {
 
     const toMain = document.getElementById("to-main");
     window.addEventListener('scroll', function(){
         toMain.style.display = "none";
-        if(window.pageYOffset > 150){    
+        if(window.pageYOffset > 170){    
         toMain.style.display = "block";
         };        
     })
@@ -14,7 +13,7 @@ window.onload = function() {
     photographerCard.className = "photographer-card";
     const photographerLink = document.createElement("a");
     photographerLink.className = "photographer-card__link";
-    photographerLink.href = "#";
+    photographerLink.href = "";
     const photographerPortrait = document.createElement("img");
     photographerPortrait.src = "./images/pictures/portraits/"
     photographerPortrait.className = "photographer-card__picture";
@@ -33,7 +32,6 @@ window.onload = function() {
     const photographerTagLink = document.createElement("a");
     photographerTagLink.className = "tag__link";
     photographerTagLink.href = "";
-    photographerTagLink.setAttribute('role', 'link');
     const hashtag = document.createElement("span");
     hashtag.setAttribute('aria-hidden', 'true');
 
@@ -69,6 +67,36 @@ window.onload = function() {
             }
             photographersSection.appendChild(photographerCard.cloneNode(true));
         }
+    
+        let toPhotographerPage = document.querySelectorAll(".photographer-card__link");
+        
+        for (let i=0;i<toPhotographerPage.length;i++) {
+            toPhotographerPage[i].addEventListener("click", function(e) {
+                e.preventDefault();
+                document.querySelector('main').style.display = 'none';
+                document.querySelector('.categories--banner').style.display = 'none';
+            });
+        }       
+
+        let allTags = document.querySelectorAll('.tag__link');
+
+        function applyFilter(e){
+
+            let selectedTag = e.currentTarget.innerText.toUpperCase();
+            let allCard = document.querySelectorAll('.photographer-card');
+
+            e.preventDefault();
+            for(i=0;i<allTags.length;i++){
+                if(selectedTag == allTags[i].innerText.toUpperCase()){
+                    allTags[i].parentNode.parentNode.parentNode.style.display = 'none';
+                };
+            }
+        }
+
+        allTags.forEach(element => {
+            element.addEventListener('click', applyFilter);
+          });
+
     });
 };
 
