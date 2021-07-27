@@ -84,11 +84,14 @@ window.onload = function() {
 
             let selectedTag = e.currentTarget.innerText.toUpperCase();
             let allCard = document.querySelectorAll('.photographer-card');
+            for(i=0; i<allCard.length;i++){
+                allCard[i].style.display = 'none';
+            }
 
             e.preventDefault();
             for(i=0;i<allTags.length;i++){
                 if(selectedTag == allTags[i].innerText.toUpperCase()){
-                    allTags[i].parentNode.parentNode.parentNode.style.display = 'none';
+                    allTags[i].parentNode.parentNode.parentNode.style.display = 'block';
                 };
             }
         }
