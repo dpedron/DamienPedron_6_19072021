@@ -48,7 +48,7 @@ window.onload = function() {
 
     /* Complete photographers cards informations */
 
-    fetch("../json/FishEyeData.json")
+    fetch("../json/fisheyedata.json")
     .then(response => response.json())    
     .then(function(data){
         for(i=0;i<data.photographers.length;i++){
@@ -91,7 +91,7 @@ window.onload = function() {
             e.preventDefault();
             for(i=0;i<allTags.length;i++){
                 if(selectedTag == allTags[i].innerText.toUpperCase()){
-                    allTags[i].parentNode.parentNode.parentNode.style.display = 'block';
+                    allTags[i].parentNode.parentNode.parentNode.style.display = 'flex';
                 };
             }
         }
