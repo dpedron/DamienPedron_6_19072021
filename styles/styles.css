@@ -33,7 +33,7 @@ body {
 }
 
 .logo {
-  margin: 10px 50px 0 50px;
+  margin: 10px 86px 0 100px;
 }
 
 .categories {
@@ -48,7 +48,7 @@ body {
 }
 
 .categories--banner {
-  padding: 0 450px 0 60px;
+  padding: 0 450px 0 0px;
 }
 
 .categories .tag {
@@ -80,7 +80,7 @@ main {
 h1 {
   position: absolute;
   margin: 0;
-  right: 70px;
+  right: 90px;
   top: -140px;
   font-size: 2.25em;
   font-weight: 400;
@@ -93,10 +93,9 @@ h1 {
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  margin-right: 30px;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  margin: 0 -60px;
 }
 
 .photographer-card {

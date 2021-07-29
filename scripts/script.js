@@ -67,38 +67,48 @@ window.onload = function() {
             }
             photographersSection.appendChild(photographerCard.cloneNode(true));
         }
-    
-        let toPhotographerPage = document.querySelectorAll(".photographer-card__link");
-        
-        for (let i=0;i<toPhotographerPage.length;i++) {
-            toPhotographerPage[i].addEventListener("click", function(e) {
-                e.preventDefault();
-                document.querySelector('main').style.display = 'none';
-                document.querySelector('.categories--banner').style.display = 'none';
-            });
-        }       
+
+
+        /* Filters */
 
         let allTags = document.querySelectorAll('.tag__link');
 
         function applyFilter(e){
-
             let selectedTag = e.currentTarget.innerText.toUpperCase();
             let allCard = document.querySelectorAll('.photographer-card');
             for(i=0; i<allCard.length;i++){
                 allCard[i].style.display = 'none';
             }
-
             e.preventDefault();
             for(i=0;i<allTags.length;i++){
                 if(selectedTag == allTags[i].innerText.toUpperCase()){
                     allTags[i].parentNode.parentNode.parentNode.style.display = 'flex';
-                };
+                }
             }
         }
 
         allTags.forEach(element => {
             element.addEventListener('click', applyFilter);
           });
+
+
+        /* Go to selected photographer page */
+
+        let toPhotographerPage = document.querySelectorAll(".photographer-card__link");
+        let photographerData = new URLSearchParams(data.photographers[1]);
+        let getPhotographerId = photographerData.get('id');
+        
+        function returnPhotographerId(e){
+            e.preventDefault();
+            for(i=0;i<data.photographers.length;i++){
+
+            }
+        }
+
+        toPhotographerPage.forEach(element => {
+            element.addEventListener('click', returnPhotographerId);
+          }); 
+
 
     });
 };

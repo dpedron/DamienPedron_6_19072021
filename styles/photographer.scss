@@ -74,14 +74,14 @@ body{
             }
         }
     }
-        button{
+    &__button{
             width: 170px;
             height: 69px;
             background-color: #901C1C;
             border: none;
             border-radius: 5px;
             padding: 0;
-            a{
+            &-link{
             font-family: 'DM Sans', sans-serif;
             text-decoration: none;    
             color: white;

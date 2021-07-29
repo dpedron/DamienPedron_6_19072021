@@ -93,7 +93,7 @@ body {
   color: white;
 }
 
-.photographer-card button {
+.photographer-card__button {
   width: 170px;
   height: 69px;
   background-color: #901C1C;
@@ -102,7 +102,7 @@ body {
   padding: 0;
 }
 
-.photographer-card button a {
+.photographer-card__button-link {
   font-family: 'DM Sans', sans-serif;
   text-decoration: none;
   color: white;
