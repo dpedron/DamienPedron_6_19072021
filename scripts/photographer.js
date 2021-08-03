@@ -22,9 +22,25 @@ window.onload = function() {
     const photographerButton = document.createElement("button");
     photographerButton.className = "photographer-card__button";
     const photographerButtonLink = document.createElement("a");
+    photographerButtonLink.href = "";
     photographerButtonLink.className = "photographer-card__button-link";
     const photographerPortrait = document.createElement("img");
     photographerPortrait.className = "photographer-card__picture";
+    const form = document.createElement("form");
+    form.id = "photographer-form";
+    const formHeading = document.createElement("h1");
+    const formFirstLabel = document.createElement("label")
+    formFirstLabel.setAttribute('for', 'first')
+    const formFirstInput = document.createElement("input");
+    formFirstInput.setAttribute('type', 'text');
+    formFirstInput.id = "first";
+    formFirstInput.setAttribute('name', 'first');
+    const formLastLabel = document.createElement("label")
+    formLastLabel.setAttribute('for', 'last')
+    const formLastInput = document.createElement("input");
+    formLastInput.setAttribute('type', 'text');
+    formLastInput.id = "last";
+    formLastInput.setAttribute('name', 'last');
 
     /* Photographers cards creation */
     photographerInfo.appendChild(photographerName);
@@ -59,5 +75,26 @@ window.onload = function() {
             photographerButtonLink.innerText = "Contactez-moi";
             photographerPortrait.src = "../images/pictures/portraits/" + data.photographers[i].portrait;
             document.querySelector('main').appendChild(photographerCard.cloneNode(true));
+
+            /* Form modal creation */
+            form.appendChild(formHeading);
+            form.appendChild(formFirstLabel);
+            form.appendChild(formFirstInput);    
+            form.appendChild(formLastLabel);    
+            form.appendChild(formLastInput);            
+            document.querySelector('main').appendChild(form);
+            
+            formHeading.innerHTML = "Contactez-moi" + " " + data.photographers[i].name;
+            formFirstLabel.innerText = "Prénom";
+            formLastLabel.innerText = "Nom";
+        
+
+            function formModal(e){
+                window.alert('test');
+                e.preventDefault();
+                form.style.display = "block";
+            }
+
+            photographerButtonLink.addEventListener('click', formModal);
     })
 }
