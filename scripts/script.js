@@ -13,7 +13,6 @@ window.onload = function() {
     photographerCard.className = "photographer-card";
     const photographerLink = document.createElement("a");
     photographerLink.className = "photographer-card__link";
-    photographerLink.href = "";
     const photographerPortrait = document.createElement("img");
     photographerPortrait.src = "./images/pictures/portraits/"
     photographerPortrait.className = "photographer-card__picture";
@@ -52,6 +51,7 @@ window.onload = function() {
     .then(response => response.json())    
     .then(function(data){
         for(i=0;i<data.photographers.length;i++){
+            photographerLink.href = "./pages/photographer.html?id=" + data.photographers[i].id;
             photographerPortrait.src = "./images/pictures/portraits/" + data.photographers[i].portrait;
             photographerName.innerText = data.photographers[i].name;
             photographerLocation.innerText = data.photographers[i].city + ", " + data.photographers[i].country;
@@ -79,38 +79,18 @@ window.onload = function() {
             let allCard = document.querySelectorAll('.photographer-card');
             for(i=0; i<allCard.length;i++){
                 allCard[i].style.display = 'none';
-/*                 if(e.currentTarget.innerText.toUpperCase() == selectedTag){
-                    allCard[i].style.display = 'flex';
-                } */
             }
             for(i=0;i<allTags.length;i++){
                 if(selectedTag == allTags[i].innerText.toUpperCase()){
                     allTags[i].parentNode.parentNode.parentNode.style.display = 'flex';
                 }
             }
-        }
+        };
 
         allTags.forEach(element => {
             element.addEventListener('click', applyFilter);
         });
         
-        /* Go to selected photographer page */
-
-        let photographerPagesLinks = document.querySelectorAll(".photographer-card__link");
-        let searchPhotographerId = new URLSearchParams('=?id');
-        
-        function returnPhotographerId(e){
-            for(i=0;i<data.photographers.length;i++){
-                let photographerPageUrl = new URL(window.location + "?id=" + data.photographers[i].id);
-                console.log(photographerPageUrl.toString());
-            }
-            e.preventDefault();
-        }
-
-        photographerPagesLinks.forEach(element => {
-            element.addEventListener('click', returnPhotographerId);
-          }); 
-
 
     });
 };
