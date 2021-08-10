@@ -42,6 +42,8 @@ window.onload = function() {
     fetch("../json/FishEyeData.json")
     .then(response => response.json())    
     .then(function(data){
+
+        /* Photographer card creation */        
             photographerName.innerText = data.photographers[i].name;
             photographerLocation.innerText = data.photographers[i].city + ", " + data.photographers[i].country;
             photographerTagline.innerText = data.photographers[i].tagline;
@@ -79,9 +81,9 @@ window.onload = function() {
             formEmailInput.setAttribute('type', 'text');
             formEmailInput.id = "email";
             formEmailInput.setAttribute('name', 'email');
-            const formMessageLabel = document.createElement("label")
+            const formMessageLabel = document.createElement("label");
             formMessageLabel.setAttribute('for', 'message');
-            const formMessageInput = document.createElement("input");
+            const formMessageInput = document.createElement("textarea");
             formMessageInput.setAttribute('type', 'text');
             formMessageInput.id = "message";
             formMessageInput.setAttribute('name', 'message');
@@ -114,8 +116,43 @@ window.onload = function() {
             function openModal(){
                 form.style.display = "flex";
                 document.querySelector('main').style.display = "none";
+                document.querySelector('header').style.display = "none";
+            }
+
+            function closeModal(){
+                form.style.display = "none";
+                document.querySelector('main').style.display = "flex";
+                document.querySelector('header').style.display = "block";
             }
         
             document.getElementById('photographer-card__button').addEventListener('click', openModal);
+            document.getElementById('close').addEventListener('click', closeModal);
+
+        /* Pictures section creation */
+
+        const media = data.media;
+
+        const picturesSection = document.createElement('section');
+        picturesSection.id = "pictures-section";
+        const sortBy = document.createElement("div");
+        const sortByLabel = document.createElement("label");
+        sortByLabel.innerText = "Trier par";
+        const sortBySelect = document.createElement("select");
+        const sortOptions = ['Popularité', 'Date', 'Titre'];
+        const option = document.createElement("option");
+        const pictureCard = document.createElement("article");
+        const pictureLink = document.createElement("a");
+        const picture = document.createElement("img");
+        const pictureInfo = document.createElement("div");
+        const pictureTitle = document.createElement("p");
+        const pictureLikes = document.createElement("img");
+
+        document.querySelector('main').appendChild(picturesSection);
+        picturesSection.appendChild(sortBy);
+        sortBy.appendChild(sortByLabel);
+        sortBy.appendChild(sortBySelect);        
+        for(i=0;i<sortOptions.length;i++){
+            sortBySelect.appendChild(option.cloneNode(true));
+        }
     })
 }

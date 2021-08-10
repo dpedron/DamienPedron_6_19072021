@@ -92,7 +92,9 @@ body{
 
 #photographer-form{
     position: relative;
-    display: flex;
+    display: none;
+    width: 669px;
+    margin: 62px auto;
     flex-direction: column;
     background-color: #DB8876;
     padding: 35px;
@@ -104,11 +106,16 @@ body{
     label{        
         font-size: 2.25em;
         color: #312E2E;
+        margin: 5px 0;
     }
-    input{        
+    input, textarea{           
+        font-size: 2.25em;     
         height: 68px;
         border-radius: 5px;
         border: none;
+        &:focus{
+            outline: none;
+        }
     }
     #message{
         height: 170px;
@@ -123,6 +130,7 @@ body{
         border: none;
         border-radius: 5px;
         margin-top: 26px;
+        cursor: pointer;
     }
     #close{
         position: absolute;
@@ -132,6 +140,7 @@ body{
         background-color: transparent;
         color: white;
         font-size: 2.625em;
+        cursor: pointer;
     }
 }
 

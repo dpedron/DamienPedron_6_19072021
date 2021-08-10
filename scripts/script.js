@@ -1,6 +1,10 @@
+let photographers = [];
+let selectedTag = null;
+
 window.onload = function() {
 
     const toMain = document.getElementById("to-main");
+
     window.addEventListener('scroll', function(){
         toMain.style.display = "none";
         if(window.pageYOffset > 170){    
@@ -50,40 +54,64 @@ window.onload = function() {
     fetch("./json/FishEyeData.json")
     .then(response => response.json())    
     .then(function(data){
-        for(i=0;i<data.photographers.length;i++){
-            photographerLink.href = "./pages/photographer.html?id=" + data.photographers[i].id;
-            photographerPortrait.src = "./images/pictures/portraits/" + data.photographers[i].portrait;
-            photographerName.innerText = data.photographers[i].name;
-            photographerLocation.innerText = data.photographers[i].city + ", " + data.photographers[i].country;
-            photographerTagline.innerText = data.photographers[i].tagline;
-            photographerPrice.innerText = data.photographers[i].price + "€/jour";
+        photographers = data.photographers;
+        for(i=0;i<photographers.length;i++){
+            photographerLink.href = "./pages/photographer.html?id=" + photographers[i].id;
+            photographerPortrait.src = "./images/pictures/portraits/" + photographers[i].portrait;
+            photographerName.innerText = photographers[i].name;
+            photographerLocation.innerText = photographers[i].city + ", " + photographers[i].country;
+            photographerTagline.innerText = photographers[i].tagline;
+            photographerPrice.innerText = photographers[i].price + "€/jour";
             photographerTags.innerHTML = "";
-            for(j=0;j<data.photographers[i].tags.length;j++){
-                photographerTagLink.innerText = data.photographers[i].tags[j];
+            for(j=0;j<photographers[i].tags.length;j++){
+                photographerTagLink.innerText = photographers[i].tags[j];
                 hashtag.innerText = "#";
                 photographerTagLink.prepend(hashtag);
                 photographerTag.appendChild(photographerTagLink);
                 photographerTags.appendChild(photographerTag.cloneNode(true));
             }
-            photographersSection.appendChild(photographerCard.cloneNode(true));
+            let pC = photographerCard.cloneNode(true);
+            pC.id = "pc_" + photographers[i].id;
+            photographersSection.appendChild(pC);
         }
 
 
         /* Filters */
 
-        let allTags = document.querySelectorAll('.tag__link');
+    let allTags = document.querySelectorAll('.tag__link');
 
-        function applyFilter(e){
+       function applyFilter(e){
             e.preventDefault();
-            let selectedTag = e.currentTarget.innerText.toUpperCase();
-            let allCard = document.querySelectorAll('.photographer-card');
-            for(i=0; i<allCard.length;i++){
-                allCard[i].style.display = 'none';
+            for(i=0; i<photographers.length; i++){
+                if(photographers[i].tags.any(tag => tag==selectedTag))
+              {
+                document.getElementById("pc_" +  photographers[i].id).style.display = "flex";
+              }
+              else
+              {
+                document.getElementById("pc_" +  photographers[i].id).style.display = "none";
+              }
             }
-            for(i=0;i<allTags.length;i++){
-                if(selectedTag == allTags[i].innerText.toUpperCase()){
-                    allTags[i].parentNode.parentNode.parentNode.style.display = 'flex';
-                }
+
+            // si un tag était précédement sélectionné...
+            if(selectedTag!=null)
+            {
+              // .. alors on l' "éteint" 
+              selectedTag.classList.remove("tag_selected");
+            }
+
+            // si le tag sur lequel on a cliqué maintenant, est le même qui était déjà sélectionné...
+            if(selectedTag==e.currentTarget)
+            {
+              // ... il a déja été "éteint", et on marque qu'actuellement, plus aucun tag n'est sélectionné.
+              selectedTag = null;
+            }
+            else
+            {
+              // ... sinon, on sauvegarde le tag sélectionné pour le prochain appel de la fonction,
+              selectedTag = e.currentTarget;
+              // et on "allume" le nouveau  tag sélectionné.
+              e.currentTarget.classList.add("tag_selected");
             }
         };
 

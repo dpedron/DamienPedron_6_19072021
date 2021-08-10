@@ -109,9 +109,9 @@ body {
 
 #photographer-form {
   position: relative;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  display: none;
+  width: 669px;
+  margin: 62px auto;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -129,12 +129,18 @@ body {
 #photographer-form label {
   font-size: 2.25em;
   color: #312E2E;
+  margin: 5px 0;
 }
 
-#photographer-form input {
+#photographer-form input, #photographer-form textarea {
+  font-size: 2.25em;
   height: 68px;
   border-radius: 5px;
   border: none;
+}
+
+#photographer-form input:focus, #photographer-form textarea:focus {
+  outline: none;
 }
 
 #photographer-form #message {
@@ -151,6 +157,7 @@ body {
   border: none;
   border-radius: 5px;
   margin-top: 26px;
+  cursor: pointer;
 }
 
 #photographer-form #close {
@@ -161,6 +168,7 @@ body {
   background-color: transparent;
   color: white;
   font-size: 2.625em;
+  cursor: pointer;
 }
 
 /* MEDIAS QUERIES */
