@@ -6,3 +6,7 @@ balises aria
 
 cliquer sur filtre actif pour l'enlever
 filtres dynamiques
+
+picture.src = "../images/pictures/Mimi/" + media[i].image;
+voir pour les vidéos
+premiere photo en derniere ?
