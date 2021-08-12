@@ -1,7 +1,7 @@
 let photographers = [];
 let selectedTag = null;
 
-window.onload = function() {
+window.onload = function() {    
 
     const toMain = document.getElementById("to-main");
 
@@ -54,7 +54,35 @@ window.onload = function() {
     fetch("./json/FishEyeData.json")
     .then(response => response.json())    
     .then(function(data){
+
         photographers = data.photographers;
+
+        /* Filters */
+
+        let allFilters = [];
+
+        /* Get all tags */
+        for(i=0;i<photographers.length;i++){
+          photographers[i].tags.forEach(element => {
+          allFilters.push(element);
+          });
+        };
+
+        /* Get all UNIQUE tags */
+        let allUniqueFilters = [...new Set(allFilters)];
+
+        
+        console.log(allFilters);
+        console.log(allUniqueFilters);
+
+        const 
+
+        for(i=0;i<allUniqueFilters.length;i++){
+
+        }
+
+
+
         for(i=0;i<photographers.length;i++){
             photographerLink.href = "./pages/photographer.html?id=" + photographers[i].id;
             photographerPortrait.src = "./images/pictures/portraits/" + photographers[i].portrait;
