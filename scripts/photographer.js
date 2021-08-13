@@ -1,4 +1,5 @@
 let photographers = [];
+let photographersName = [];
 
 window.onload = function() {
 
@@ -44,28 +45,38 @@ window.onload = function() {
     fetch("../json/FishEyeData.json")
     .then(response => response.json())    
     .then(function(data){
-
         
         let params = new URLSearchParams(document.location.search.substring(1));
         let id = params.get("id");        
-        photographers = data.photographers[i];
+        photographers = data.photographers;
 
         /* Photographer card creation */
-    
-        photographerName.innerText = photographers.name;
-        photographerLocation.innerText = photographers.city + ", " + photographers.country;
-        photographerTagline.innerText = photographers.tagline;
-        photographerTags.innerHTML = "";
-        for(j=0;j<photographers.tags.length;j++){
-            photographerTagLink.innerText = photographers.tags[j];
-            hashtag.innerText = "#";
-            photographerTagLink.prepend(hashtag);
-            photographerTag.appendChild(photographerTagLink);
-            photographerTags.appendChild(photographerTag.cloneNode(true));
+
+        for(i=0;i<photographers.length; i++){
+            if(id == photographers[i].id){  
+
+                /* Put photographer name as title of the page */
+        
+                document.title = data.photographers[i].name;
+                
+                
+                photographerName.innerText = photographers[i].name;
+                photographerLocation.innerText = photographers[i].city + ", " + photographers[i].country;
+                photographerTagline.innerText = photographers[i].tagline;
+                photographerTags.innerHTML = "";
+                photographerPortrait.src = "../images/pictures/portraits/" + photographers[i].portrait;
+                for(j=0;j<photographers[i].tags.length;j++){
+                    photographerTagLink.innerText = photographers[i].tags[j];
+                    hashtag.innerText = "#";
+                    photographerTagLink.prepend(hashtag);
+                    photographerTag.appendChild(photographerTagLink);
+                    photographerTags.appendChild(photographerTag.cloneNode(true));
+                }
+            }
+            photographerButton.innerText = "Contactez-moi";
         }
-        photographerButton.innerText = "Contactez-moi";
-        photographerPortrait.src = "../images/pictures/portraits/" + photographers.portrait;
         document.querySelector('main').appendChild(photographerCard.cloneNode(true));
+
 
         /* Form modal creation */
         const form = document.createElement("form");
@@ -113,7 +124,7 @@ window.onload = function() {
         form.appendChild(formClose);                 
         document.querySelector('body').appendChild(form);
         
-        formHeading.innerHTML = "Contactez-moi<br>\ " + photographers.name;
+        formHeading.innerHTML = "Contactez-moi<br>\ " + photographerName.innerText;
         formFirstLabel.innerText = "Prénom";
         formLastLabel.innerText = "Nom";
         formEmailLabel.innerText = "Email";
@@ -127,9 +138,10 @@ window.onload = function() {
             document.querySelector('header').style.display = "none";
         }
 
-        function closeModal(){
+        function closeModal(e){
+            e.preventDefault();
             form.style.display = "none";
-            document.querySelector('main').style.display = "flex";
+            document.querySelector('main').style.display = "block";
             document.querySelector('header').style.display = "block";
         }
     
@@ -138,20 +150,54 @@ window.onload = function() {
 
         /* Sort-by creation */
 
-
-        
-        /* Pictures section creation */
-
-        const media = data.media;
-
         const picturesSection = document.createElement('section');
         picturesSection.id = "pictures-section";
         const sortBy = document.createElement("div");
+        sortBy.className ="sort-by"
         const sortByLabel = document.createElement("label");
+        sortByLabel.className = "sort-by__label"
         sortByLabel.innerText = "Trier par";
         const sortBySelect = document.createElement("select");
+        sortBySelect.className = "sort-by__select";
         const sortOptions = ['Popularité', 'Date', 'Titre'];
-        const option = document.createElement("option");
+        const sortByOption = document.createElement("option");        
+        sortByOption.className = "sort-by__select__option";
+
+        document.querySelector('main').appendChild(sortBy);
+        sortBy.appendChild(sortByLabel);
+        sortBy.appendChild(sortBySelect);        
+        for(i=0;i<sortOptions.length;i++){
+            sortByOption.innerText = sortOptions[i];
+            sortBySelect.appendChild(sortByOption.cloneNode(true));
+        }
+
+        const media = data.media;        
+        
+        /* Likes counter and price */
+
+        const likesCounterAndPrice = document.createElement("div");
+        likesCounterAndPrice.className = "likes-counter-and-price";
+        const likesCounter = document.createElement("p");
+        likesCounter.className = "likes-counter";
+        const likeIcon = document.createElement("i");
+        likeIcon.className = "fas fa-heart like-icon";
+        const price = document.createElement("p");
+        price.className ="price";
+
+        document.querySelector("main").appendChild(likesCounterAndPrice);
+        likesCounterAndPrice.appendChild(likesCounter);
+        likesCounter.innerText = "123";
+        likesCounter.appendChild(likeIcon);
+        likesCounterAndPrice.appendChild(price);
+        likeIcon.src = "../images/heart-solid.svg";
+        
+        for(i=0;i<photographers.length;i++){
+        if(id == photographers[i].id){
+            price.innerHTML = photographers[i].price + "€ / jour";          
+            }
+        }
+        /* Pictures section creation */
+
         const pictureCard = document.createElement("article");
         pictureCard.className = "picture-card";
         const pictureLink = document.createElement("a");
@@ -165,32 +211,59 @@ window.onload = function() {
         const pictureLikesNumber = document.createElement("p");        
         pictureLikesNumber.className = "picture-card__info-likes";        
         const pictureLikeIcon = document.createElement("i");        
-        pictureLikeIcon.className = "fas fa-heart";
+        pictureLikeIcon.className = "fas fa-heart picture-card__info-likes-icon";
         pictureLikeIcon.src = "../images/heart-solid.svg";
 
-        document.querySelector('main').appendChild(sortBy);
         document.querySelector('main').appendChild(picturesSection);
-        sortBy.appendChild(sortByLabel);
-        sortBy.appendChild(sortBySelect);        
-        for(i=0;i<sortOptions.length;i++){
-            option.innerText = sortOptions[i];
-            sortBySelect.appendChild(option.cloneNode(true));
-        }
         for(i=0;i<media.length;i++){
 
             if(media[i].photographerId == id){
                 pictureCard.appendChild(pictureLink);
                 pictureLink.appendChild(picture);               
-                picture.src = "../images/pictures/Mimi/" + media[i].image;
+                picture.src = "../images/pictures/" + photographerName.innerHTML + "/" + media[i].image;
+                picture.id = media[i].id;
                 pictureCard.appendChild(pictureInfo);
                 pictureInfo.appendChild(pictureTitle);
                 pictureTitle.innerText = media[i].title;
                 pictureInfo.appendChild(pictureLikesNumber);
                 pictureLikesNumber.innerText = media[i].likes;
                 pictureLikesNumber.appendChild(pictureLikeIcon);                
-                picturesSection.appendChild(pictureCard.cloneNode(true)); 
+                picturesSection.appendChild(pictureCard.cloneNode(true));
             }
-
         }
+
+        /* Lightbox */
+
+        const lightboxModal = document.createElement('dialog');
+        const lightboxFigure = document.createElement('figure');
+        const lightboxPicture = document.createElement('img');
+        const lightboxFigcaption = document.createElement('figcaption');
+        const lightboxLeft = document.createElement('p');
+        const lightboxRight = document.createElement('p');
+        const lightboxClose = document.createElement('p');
+
+        document.querySelector('body').appendChild(lightboxModal);
+        lightboxModal.appendChild(lightboxLeft);
+        lightboxModal.appendChild(lightboxFigure);
+        lightboxFigure.appendChild(lightboxPicture);
+        lightboxFigure.appendChild(lightboxFigcaption);
+        lightboxModal.appendChild(lightboxRight);
+        lightboxModal.appendChild(lightboxClose);
+
+        lightboxLeft.innerText = "<";
+        lightboxRight.innerText = ">";
+        lightboxClose.innerText = "X";
+
+        const allPicturesLinks = document.querySelectorAll('.picture-card__link');
+
+        function openLigthbox(e){
+            lightboxModal.style.display = "flex";
+            document.querySelector('main').style.display = "none";
+            document.querySelector('header').style.display = "none";
+        }
+
+        allPicturesLinks.forEach(element => {
+            element.addEventListener('click', openLigthbox);
+        });    
     })
 }

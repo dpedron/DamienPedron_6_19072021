@@ -64,6 +64,7 @@ body {
   padding: 3px 7px;
   border: 1px solid #C4C4C4;
   border-radius: 11px;
+  cursor: pointer;
 }
 
 .categories .tag__link:hover, .categories .tag__link:focus {

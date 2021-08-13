@@ -71,15 +71,26 @@ window.onload = function() {
         /* Get all UNIQUE tags */
         let allUniqueFilters = [...new Set(allFilters)];
 
-        
-        console.log(allFilters);
-        console.log(allUniqueFilters);
+        const categories = document.createElement("nav");
+        categories.setAttribute("aria-label", "photographer categories");
+        const headerTags = document.createElement("ul");
+        headerTags.className = "categories categories--banner";
+        const headerTag = document.createElement("li");
+        headerTag.className = "tag";
+        const headerTagLink = document.createElement("a");
+        headerTagLink.className = "tag__link";
+        headerTagLink.setAttribute("role", "link")
 
-        const 
+        document.querySelector("header").appendChild(categories);
+        categories.appendChild(headerTags);
 
         for(i=0;i<allUniqueFilters.length;i++){
-
-        }
+          headerTagLink.innerText = allUniqueFilters[i];
+          hashtag.innerText = "#";
+          headerTagLink.prepend(hashtag);
+          headerTag.appendChild(headerTagLink);
+          headerTags.appendChild(headerTag.cloneNode(true));
+      }
 
 
 
@@ -110,8 +121,10 @@ window.onload = function() {
 
        function applyFilter(e){
             e.preventDefault();
+
             for(i=0; i<photographers.length; i++){
-                if(photographers[i].tags.any(tag => tag==selectedTag))
+              selectedTag = e.currentTarget;
+              if(photographers[i].tags.some(tag => "#" + tag==selectedTag.innerText))
               {
                 document.getElementById("pc_" +  photographers[i].id).style.display = "flex";
               }
@@ -124,7 +137,7 @@ window.onload = function() {
             // si un tag était précédement sélectionné...
             if(selectedTag!=null)
             {
-              // .. alors on l' "éteint" 
+            // .. alors on l' "éteint" 
               selectedTag.classList.remove("tag_selected");
             }
 
@@ -145,10 +158,7 @@ window.onload = function() {
 
         allTags.forEach(element => {
             element.addEventListener('click', applyFilter);
-        });
-        
+        });     
 
     });
 };
-
-

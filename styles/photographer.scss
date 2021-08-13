@@ -5,9 +5,15 @@
 
 body{
     max-width: 1440px;
-    margin: 20px auto 0 auto;
+    margin: 20px auto 80px auto;
     padding: 0 100px;
     font-family: 'DM Sans', sans-serif;
+}
+
+/* HEADER */
+
+header{
+    margin-bottom: 40px;
 }
 
 /* MAIN */
@@ -144,17 +150,57 @@ body{
     }
 }
 
+.sort-by{
+    margin: 20px 0 58px 0;
+    font-size: 1.125em;
+    &__label{
+        margin-right: 25px;
+    }
+    &__select{
+        color: white;
+        background-color: $primary-color;
+        padding: 14px;
+        font-weight: 700;
+        border: none;
+        border-radius: 5px;
+        padding-right: 18px;
+        &__option{
+            padding: 14px;
+        }
+    }
+}
+
+.likes-counter-and-price{
+    position: fixed;
+    bottom: 0;
+    right: 36px;
+    display: flex;
+    justify-content: space-between;
+    background-color: #DB8876;
+    width: 376px;
+    border-radius: 5px 5px 0 0;
+    padding: 0px 30px;
+    font-size: 1.5em;
+    font-weight: 500;
+    .like-icon{
+        margin-left: 6px;
+        font-size: 21px;
+    }
+
+}
+
 #pictures-section{
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    
+
     .picture-card{
         margin-right: 20px;
         &__link-image{
             width: 350px;
             height: 300px;
             object-fit: cover;
+            cursor: pointer;
         }
         &__info{
             display: flex;
@@ -171,7 +217,7 @@ body{
                 display: flex;
                 align-items: center;
                 font-weight: 500;
-                .fa-heart{
+                &-icon{
                     margin-left: 7px;
                     font-size: 21px;
                 }
