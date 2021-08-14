@@ -219,9 +219,9 @@ window.onload = function() {
 
             if(media[i].photographerId == id){
                 pictureCard.appendChild(pictureLink);
-                pictureLink.appendChild(picture);               
+                pictureLink.appendChild(picture);
+                pictureLink.id = media[i].id;               
                 picture.src = "../images/pictures/" + photographerName.innerHTML + "/" + media[i].image;
-                picture.id = media[i].id;
                 pictureCard.appendChild(pictureInfo);
                 pictureInfo.appendChild(pictureTitle);
                 pictureTitle.innerText = media[i].title;
@@ -235,12 +235,19 @@ window.onload = function() {
         /* Lightbox */
 
         const lightboxModal = document.createElement('dialog');
+        lightboxModal.className = "lightbox";
         const lightboxFigure = document.createElement('figure');
+        lightboxFigure.className = "lightbox__figure";
         const lightboxPicture = document.createElement('img');
+        lightboxPicture.className = "lightbox__figure-picture";
         const lightboxFigcaption = document.createElement('figcaption');
-        const lightboxLeft = document.createElement('p');
-        const lightboxRight = document.createElement('p');
-        const lightboxClose = document.createElement('p');
+        lightboxFigcaption.className = "lightbox__figure-figcaption";
+        const lightboxLeft = document.createElement('i');
+        lightboxLeft.className = "lightbox__arrows fas fa-chevron-left";
+        const lightboxRight = document.createElement('i');        
+        lightboxRight.className = "lightbox__arrows fas fa-chevron-right"
+        const lightboxClose = document.createElement('i');
+        lightboxClose.className = "lightbox__x fas fa-times"
 
         document.querySelector('body').appendChild(lightboxModal);
         lightboxModal.appendChild(lightboxLeft);
@@ -250,20 +257,41 @@ window.onload = function() {
         lightboxModal.appendChild(lightboxRight);
         lightboxModal.appendChild(lightboxClose);
 
-        lightboxLeft.innerText = "<";
-        lightboxRight.innerText = ">";
-        lightboxClose.innerText = "X";
-
         const allPicturesLinks = document.querySelectorAll('.picture-card__link');
 
         function openLigthbox(e){
             lightboxModal.style.display = "flex";
             document.querySelector('main').style.display = "none";
             document.querySelector('header').style.display = "none";
+            for(i=0;i<media.length;i++){
+                if(e.currentTarget.id == media[i].id){
+                    lightboxPicture.src = "../images/pictures/" + photographerName.innerHTML + "/" + media[i].image;
+                }
+            }
         }
 
         allPicturesLinks.forEach(element => {
             element.addEventListener('click', openLigthbox);
-        });    
+        });   
+
+        function closeLigthbox(){
+            lightboxModal.style.display = "none";
+            document.querySelector('main').style.display = "block";
+            document.querySelector('header').style.display = "block";
+        }
+
+        lightboxClose.addEventListener('click', closeLigthbox);
+        
+        let photographerMedia = [];
+
+        function nextMedia(){
+            for(i=0;i<media.length;i++){                
+                if(media[i].photographerId == id){
+                    photographerMedia.push(media[i].image);
+                }
+        }
+    }
+
+        lightboxRight.addEventListener('click', nextMedia);
     })
 }

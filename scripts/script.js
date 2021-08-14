@@ -121,9 +121,8 @@ window.onload = function() {
 
        function applyFilter(e){
             e.preventDefault();
-
             for(i=0; i<photographers.length; i++){
-              selectedTag = e.currentTarget;
+              let selectedTag = e.currentTarget;
               if(photographers[i].tags.some(tag => "#" + tag==selectedTag.innerText))
               {
                 document.getElementById("pc_" +  photographers[i].id).style.display = "flex";
@@ -138,7 +137,12 @@ window.onload = function() {
             if(selectedTag!=null)
             {
             // .. alors on l' "éteint" 
-              selectedTag.classList.remove("tag_selected");
+              selectedTag.classList.remove("tag__selected");
+              for(i=0; i<allTags.length; i++){
+                if(allTags[i].innerText == e.currentTarget.innerText){
+                  allTags[i].classList.remove("tag__selected");
+                }                
+              }
             }
 
             // si le tag sur lequel on a cliqué maintenant, est le même qui était déjà sélectionné...
@@ -146,13 +150,21 @@ window.onload = function() {
             {
               // ... il a déja été "éteint", et on marque qu'actuellement, plus aucun tag n'est sélectionné.
               selectedTag = null;
+              for(i=0; i<photographers.length; i++){
+                  document.getElementById("pc_" +  photographers[i].id).style.display = "flex";
+              }
             }
             else
             {
               // ... sinon, on sauvegarde le tag sélectionné pour le prochain appel de la fonction,
               selectedTag = e.currentTarget;
               // et on "allume" le nouveau  tag sélectionné.
-              e.currentTarget.classList.add("tag_selected");
+              e.currentTarget.classList.add("tag__selected");
+              for(i=0; i<allTags.length; i++){
+                if(allTags[i].innerText == e.currentTarget.innerText){
+                  allTags[i].classList.add("tag__selected");
+                }             
+              }
             }
         };
 

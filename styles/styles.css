@@ -67,7 +67,7 @@ body {
   cursor: pointer;
 }
 
-.categories .tag__link:hover, .categories .tag__link:focus {
+.categories .tag__selected {
   background-color: #901C1C;
   border: 1px solid #901C1C;
   color: white;

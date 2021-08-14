@@ -226,6 +226,34 @@ header{
     }
 }
 
+/* LIGHTBOX */
+
+.lightbox{
+    margin: 62px auto;
+    border: none;
+    display: none;
+    align-items: center;
+    &__figure{
+        max-width: 1250px;
+        &-picture{
+            max-width: 1050px;
+            max-height: 900px;
+            border-radius: 5px;
+        }
+    }
+    &__arrows{
+        color: $primary-color;
+        font-size: 3em;
+    }
+    &__x{
+        color: $primary-color;
+        font-size: 2.625em;
+        position: absolute;
+        top: 32px;
+        right: 32px;
+    }
+}
+
 /* MEDIAS QUERIES */
 
 /* TABLET */
