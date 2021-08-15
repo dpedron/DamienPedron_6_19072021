@@ -85,16 +85,15 @@ h1{
 #photographers-section{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
-    margin: 0 -60px;
+    justify-content: center;
 }
 
 .photographer-card{
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 50px 20px;
-    min-width: 25%;
+    margin: 50px 0px;
+    min-width: 33%;
     &__link{
         text-decoration: none;
         display: flex;

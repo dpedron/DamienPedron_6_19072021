@@ -19,7 +19,7 @@ header {
   display: flex;
   padding: 50px;
   background-color: #FAFAFA;
-  height: 200px;
+  min-height: 200px;
   position: relative;
   border-radius: 5px;
 }
@@ -276,6 +276,7 @@ header {
 #pictures-section .picture-card__info-likes-icon {
   margin-left: 7px;
   font-size: 21px;
+  cursor: pointer;
 }
 
 /* LIGHTBOX */
@@ -301,6 +302,7 @@ header {
 .lightbox__arrows {
   color: #901C1C;
   font-size: 3em;
+  cursor: pointer;
 }
 
 .lightbox__x {
@@ -309,6 +311,7 @@ header {
   position: absolute;
   top: 32px;
   right: 32px;
+  cursor: pointer;
 }
 
 /* MEDIAS QUERIES */
