@@ -94,17 +94,24 @@ h1{
     align-items: center;
     margin: 50px 0px;
     min-width: 33%;
+    text-align: center;
     &__link{
         text-decoration: none;
-        display: flex;
         align-items: center;
         flex-direction: column;
+        display: flex;
+        justify-content: center;
     }
-    &__picture{
+    &__picture-container{
         width: 200px;
         height: 200px;
         border-radius: 100%;
         overflow: hidden;
+    }
+    &__picture{
+        object-fit: cover;
+        width: 200px;
+        height: 200px;
     }
     &__name{
         color: $secondary-color;

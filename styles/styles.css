@@ -112,13 +112,11 @@ h1 {
           align-items: center;
   margin: 50px 0px;
   min-width: 33%;
+  text-align: center;
 }
 
 .photographer-card__link {
   text-decoration: none;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -126,13 +124,26 @@ h1 {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
-.photographer-card__picture {
+.photographer-card__picture-container {
   width: 200px;
   height: 200px;
   border-radius: 100%;
   overflow: hidden;
+}
+
+.photographer-card__picture {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 200px;
+  height: 200px;
 }
 
 .photographer-card__name {

@@ -25,6 +25,8 @@ window.onload = function() {
     const photographerButton = document.createElement("button");
     photographerButton.id = "photographer-card__button";
     photographerButton.setAttribute('type', 'button')
+    const photographerPortraitContainer = document.createElement('div');
+    photographerPortraitContainer.className = "photographer-card__picture-container";
     const photographerPortrait = document.createElement("img");
     photographerPortrait.className = "photographer-card__picture";
 
@@ -33,8 +35,9 @@ window.onload = function() {
     photographerInfo.appendChild(photographerLocation);
     photographerInfo.appendChild(photographerTagline);
     photographerInfo.appendChild(photographerTags);
+    photographerPortraitContainer.appendChild(photographerPortrait);
     
-    const photographerCardItems = [photographerInfo, photographerButton, photographerPortrait];
+    const photographerCardItems = [photographerInfo, photographerButton, photographerPortraitContainer];
 
     for(i=0;i<photographerCardItems.length;i++){
         photographerCard.appendChild(photographerCardItems[i]);
@@ -57,14 +60,13 @@ window.onload = function() {
 
                 /* Put photographer name as title of the page */
         
-                document.title = data.photographers[i].name;
-                
+                document.title = data.photographers[i].name;                
                 
                 photographerName.innerText = photographers[i].name;
                 photographerLocation.innerText = photographers[i].city + ", " + photographers[i].country;
                 photographerTagline.innerText = photographers[i].tagline;
                 photographerTags.innerHTML = "";
-                photographerPortrait.src = "../images/pictures/portraits/" + photographers[i].portrait;
+                photographerPortrait.src = "../images/pictures/Photographers ID Photos/" + photographers[i].portrait;
                 for(j=0;j<photographers[i].tags.length;j++){
                     photographerTagLink.innerText = photographers[i].tags[j];
                     hashtag.innerText = "#";
@@ -77,7 +79,7 @@ window.onload = function() {
         }
         document.querySelector('main').appendChild(photographerCard.cloneNode(true));
 
-
+        
         /* Form modal creation */
         const form = document.createElement("form");
         form.id = "photographer-form";
@@ -186,12 +188,12 @@ window.onload = function() {
         let photographerLikes = []; /* Array of all likes */
         let totalPhotographerLikes = null; /* Total of likes */
         const reducer = (accumulator, currentValue) => accumulator + currentValue; /* Sum of likes */
-            for(i=0;i<media.length;i++){               
+        for(i=0;i<media.length;i++){               
                 if(media[i].photographerId == id){
                     photographerLikes.push(media[i].likes);
                     totalPhotographerLikes = photographerLikes.reduce(reducer); 
             }    
-        } 
+        }
 
         const likesCounterAndPrice = document.createElement("div");
         likesCounterAndPrice.className = "likes-counter-and-price";
@@ -219,46 +221,60 @@ window.onload = function() {
         const pictureCard = document.createElement("article");
         pictureCard.className = "picture-card";
         const pictureLink = document.createElement("a");
-        pictureLink.className = "picture-card__link";
+        pictureLink.className = "picture-card__link";        
         const picture = document.createElement("img");
         picture.className = "picture-card__link-image";
+        const video = document.createElement("video");
+        video.className = "picture-card__link-image";
+        const videoSource = document.createElement("source");
         const pictureInfo = document.createElement("div");        
         pictureInfo.className = "picture-card__info";
         const pictureTitle = document.createElement("p");        
         pictureTitle.className = "picture-card__info-title";
         const pictureLikesNumber = document.createElement("p");        
-        pictureLikesNumber.className = "picture-card__info-likes";        
+        pictureLikesNumber.className = "picture-card__info-likes";
+        const pictureAddLike = document.createElement("a");
+        pictureAddLike.className = "picture-card__info-add-like";
         const pictureLikeIcon = document.createElement("i");        
         pictureLikeIcon.className = "fas fa-heart picture-card__info-likes-icon";
         pictureLikeIcon.src = "../images/heart-solid.svg";
 
-        function addLike(){
-            console.log('ok');
-        };
-
-        const allIconLike = document.querySelectorAll('.picture-card__info-likes-icon');
-
-        allIconLike.forEach(element => {
-            element.addEventListener('click', addLike);
-        });  
-
+        
         document.querySelector('main').appendChild(picturesSection);
         for(i=0;i<media.length;i++){
-
             if(media[i].photographerId == id){
+                pictureLink.id = media[i].id;
+                if(media[i].video){
+                    pictureLink.appendChild(video); 
+                    video.appendChild(videoSource);            
+                    videoSource.src = "../images/pictures/" + photographerName.innerHTML + "/" + media[i].video;
+                } else { 
+                    pictureLink.appendChild(picture);             
+                    picture.src = "../images/pictures/" + photographerName.innerHTML + "/" + media[i].image;
+                }
                 pictureCard.appendChild(pictureLink);
-                pictureLink.appendChild(picture);
-                pictureLink.id = media[i].id;               
-                picture.src = "../images/pictures/" + photographerName.innerHTML + "/" + media[i].image;
                 pictureCard.appendChild(pictureInfo);
                 pictureInfo.appendChild(pictureTitle);
                 pictureTitle.innerText = media[i].title;
                 pictureInfo.appendChild(pictureLikesNumber);
                 pictureLikesNumber.innerText = media[i].likes;
-                pictureLikesNumber.appendChild(pictureLikeIcon);                
+                pictureInfo.appendChild(pictureAddLike);
+                pictureAddLike.appendChild(pictureLikeIcon);                
                 picturesSection.appendChild(pictureCard.cloneNode(true));
             }
         }
+        
+        function addLike(e){
+                let test = e.currentTarget.previousSibling;
+                test.innerText++;
+        };
+
+        const allIconLike = document.querySelectorAll('.picture-card__info-add-like');
+
+        allIconLike.forEach(element => {
+            element.addEventListener('click', addLike);
+        });  
+
 
         /* Lightbox */
 
@@ -309,6 +325,8 @@ window.onload = function() {
         }
 
         lightboxClose.addEventListener('click', closeLigthbox);
+
+        let photographerMedia = [];
 
         function nextMedia(){
             for(i=0;i<photographerMedia.length;i++){

@@ -17,6 +17,8 @@ window.onload = function() {
     photographerCard.className = "photographer-card";
     const photographerLink = document.createElement("a");
     photographerLink.className = "photographer-card__link";
+    const photographerPortraitContainer = document.createElement('div');
+    photographerPortraitContainer.className = "photographer-card__picture-container";
     const photographerPortrait = document.createElement("img");
     photographerPortrait.src = "./images/pictures/portraits/"
     photographerPortrait.className = "photographer-card__picture";
@@ -40,7 +42,8 @@ window.onload = function() {
 
     /* Photographers cards creation */
 
-    photographerLink.appendChild(photographerPortrait);
+    photographerLink.appendChild(photographerPortraitContainer);
+    photographerPortraitContainer.appendChild(photographerPortrait);
     photographerLink.appendChild(photographerName);
     
     const photographerCardItems = [photographerLink, photographerLocation, photographerTagline, photographerPrice, photographerTags];
@@ -117,7 +120,7 @@ window.onload = function() {
 
         /* Filters */
 
-    let allTags = document.querySelectorAll('.tag__link');
+      let allTags = document.querySelectorAll('.tag__link');
 
        function applyFilter(e){
             e.preventDefault();
@@ -143,7 +146,6 @@ window.onload = function() {
                 }    
               }
             }
-
             // si le tag sur lequel on a cliqué maintenant, est le même qui était déjà sélectionné...
             if(e.currentTarget.className=="tag__link tag__selected")
             {
