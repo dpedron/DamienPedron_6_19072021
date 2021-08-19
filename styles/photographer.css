@@ -2,14 +2,14 @@
 /* BODY */
 body {
   max-width: 1440px;
-  margin: 20px auto 80px auto;
+  margin: 0 auto;
   padding: 0 100px;
   font-family: 'DM Sans', sans-serif;
 }
 
 /* HEADER */
 header {
-  margin-bottom: 40px;
+  margin: 20px 0 40px 0;
 }
 
 /* MAIN */
@@ -74,10 +74,17 @@ header {
 }
 
 .photographer-card__picture {
+  -ms-grid-row: 1;
+  -ms-grid-column: 3;
+  grid-area: c;
+      justify-self: right;
   -o-object-fit: cover;
      object-fit: cover;
   width: 200px;
   height: 200px;
+  border-radius: 100%;
+  -webkit-box-shadow: 0 0 1rem rgba(70, 66, 66, 0.644);
+          box-shadow: 0 0 1rem rgba(70, 66, 66, 0.644);
 }
 
 .photographer-card .tag {
@@ -128,7 +135,7 @@ header {
       -ms-flex-direction: column;
           flex-direction: column;
   background-color: #DB8876;
-  padding: 35px;
+  padding: 20px 35px 35px 35px;
   border-radius: 5px;
 }
 
@@ -148,6 +155,8 @@ header {
   height: 68px;
   border-radius: 5px;
   border: none;
+  padding-left: 15px;
+  font-weight: 400;
 }
 
 #photographer-form input:focus, #photographer-form textarea:focus {
@@ -172,14 +181,27 @@ header {
 }
 
 #photographer-form #close {
+  width: 41px;
+  height: 41px;
   position: absolute;
+  top: 40px;
   right: 35px;
   border: none;
   padding: 0;
-  background-color: transparent;
-  color: white;
+  background: url(../images/icons/x-vector.svg);
   font-size: 2.625em;
   cursor: pointer;
+}
+
+#photographer-form .input-error {
+  border: 3px solid #901C1C;
+}
+
+#photographer-form .form-error__message {
+  display: none;
+  color: #901C1C;
+  font-weight: 700;
+  margin: 10px 0 0 0;
 }
 
 .sort-by {
@@ -223,6 +245,7 @@ header {
   padding: 0px 30px;
   font-size: 1.5em;
   font-weight: 500;
+  z-index: 99;
 }
 
 .likes-counter-and-price .like-icon {
@@ -239,10 +262,12 @@ header {
           justify-content: space-between;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  margin-bottom: 80px;
 }
 
 #pictures-section .picture-card {
   margin-right: 20px;
+  position: relative;
 }
 
 #pictures-section .picture-card__link-image {
@@ -254,6 +279,21 @@ header {
   cursor: pointer;
 }
 
+#pictures-section .picture-card__video-icon {
+  font-size: 30px;
+  color: #901C1C;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+#pictures-section .picture-card__date {
+  text-align: right;
+  color: #901C1C;
+  font-size: 0.7em;
+  margin: -5px 0 5px 0;
+}
+
 #pictures-section .picture-card__info {
   display: -ms-grid;
   display: grid;
@@ -262,23 +302,23 @@ header {
       grid-template-columns: 1fr auto auto;
   color: #901C1C;
   font-size: 1.5em;
-  margin-bottom: 10px;
+  margin-bottom: 30px;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
 }
 
 #pictures-section .picture-card__info-title {
   -ms-grid-row: 1;
   -ms-grid-column: 1;
   grid-area: a;
-  margin-top: 12px;
-  color: #901C1C;
   font-weight: 400;
   text-overflow: ellipsis;
   max-width: 250px;
+  margin: 0;
 }
 
 #pictures-section .picture-card__info-likes {
-  font-weight: 500;
-  margin-top: 10px;
   -ms-grid-row: 1;
   -ms-grid-column: 2;
   grid-area: b;
@@ -286,15 +326,16 @@ header {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  margin: 0;
 }
 
 #pictures-section .picture-card__info-likes-icon {
-  margin: -14px 0 0 7px;
-  font-size: 21px;
+  margin: 5px 0 0 7px;
+  font-size: 20px;
   cursor: pointer;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
 }
 
 #pictures-section .picture-card__info-add-like {
@@ -312,37 +353,43 @@ header {
 
 /* LIGHTBOX */
 .lightbox {
-  margin: 62px auto;
+  margin: 35px auto;
+  padding: 0;
   border: none;
   display: none;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  height: 90vh;
 }
 
 .lightbox__figure {
-  max-width: 1250px;
+  height: 100%;
 }
 
 .lightbox__figure-picture {
-  max-width: 1050px;
-  max-height: 900px;
+  height: 100%;
   border-radius: 5px;
 }
 
 .lightbox__arrows {
   color: #901C1C;
-  font-size: 3em;
   cursor: pointer;
+  background: url(../images/icons/arrow-lightbox.svg);
+  border: none;
+  width: 30px;
+  height: 48px;
 }
 
 .lightbox__x {
-  color: #901C1C;
-  font-size: 2.625em;
   position: absolute;
-  top: 32px;
-  right: 32px;
+  top: 0;
+  right: 0;
   cursor: pointer;
+  border: none;
+  background: url(../images/icons/x-lightbox.svg);
+  width: 42px;
+  height: 42px;
 }
 
 /* MEDIAS QUERIES */

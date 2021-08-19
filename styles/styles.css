@@ -67,6 +67,12 @@ body {
   cursor: pointer;
 }
 
+.categories .tag__link:hover {
+  background-color: #901C1C;
+  border: 1px solid #901C1C;
+  color: white;
+}
+
 .categories .tag__selected {
   background-color: #901C1C;
   border: 1px solid #901C1C;
@@ -132,18 +138,14 @@ h1 {
           justify-content: center;
 }
 
-.photographer-card__picture-container {
-  width: 200px;
-  height: 200px;
-  border-radius: 100%;
-  overflow: hidden;
-}
-
 .photographer-card__picture {
   -o-object-fit: cover;
      object-fit: cover;
   width: 200px;
   height: 200px;
+  border-radius: 100%;
+  -webkit-box-shadow: 0 0 1rem rgba(70, 66, 66, 0.644);
+          box-shadow: 0 0 1rem rgba(70, 66, 66, 0.644);
 }
 
 .photographer-card__name {

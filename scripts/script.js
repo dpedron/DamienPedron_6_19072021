@@ -17,11 +17,10 @@ window.onload = function() {
     photographerCard.className = "photographer-card";
     const photographerLink = document.createElement("a");
     photographerLink.className = "photographer-card__link";
-    const photographerPortraitContainer = document.createElement('div');
-    photographerPortraitContainer.className = "photographer-card__picture-container";
     const photographerPortrait = document.createElement("img");
     photographerPortrait.src = "./images/pictures/portraits/"
     photographerPortrait.className = "photographer-card__picture";
+    photographerPortrait.setAttribute('alt','""');
     const photographerName = document.createElement("h2");
     photographerName.className = "photographer-card__name";
     const photographerLocation = document.createElement("p");
@@ -41,9 +40,7 @@ window.onload = function() {
     hashtag.setAttribute('aria-hidden', 'true');
 
     /* Photographers cards creation */
-
-    photographerLink.appendChild(photographerPortraitContainer);
-    photographerPortraitContainer.appendChild(photographerPortrait);
+    photographerLink.appendChild(photographerPortrait);
     photographerLink.appendChild(photographerName);
     
     const photographerCardItems = [photographerLink, photographerLocation, photographerTagline, photographerPrice, photographerTags];

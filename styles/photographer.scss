@@ -5,7 +5,7 @@
 
 body{
     max-width: 1440px;
-    margin: 20px auto 80px auto;
+    margin: 0 auto;
     padding: 0 100px;
     font-family: 'DM Sans', sans-serif;
 }
@@ -13,7 +13,7 @@ body{
 /* HEADER */
 
 header{
-    margin-bottom: 40px;
+    margin: 20px 0 40px 0;
 }
 
 /* MAIN */
@@ -61,9 +61,13 @@ header{
         margin-left: 50px;
     }
     &__picture{
+        grid-area: c;
+        justify-self: right;
         object-fit: cover;
         width: 200px;
         height: 200px;
+        border-radius: 100%;
+        box-shadow: 0 0 1rem rgba(70, 66, 66, 0.644);
     }
         .tag{
             list-style: none;
@@ -107,7 +111,7 @@ header{
     margin: 62px auto;
     flex-direction: column;
     background-color: #DB8876;
-    padding: 35px;
+    padding: 20px 35px 35px 35px;
     border-radius: 5px;
     h1{
         font-size: 4em;
@@ -123,6 +127,8 @@ header{
         height: 68px;
         border-radius: 5px;
         border: none;
+        padding-left: 15px;
+        font-weight: 400;
         &:focus{
             outline: none;
         }
@@ -143,14 +149,25 @@ header{
         cursor: pointer;
     }
     #close{
+        width: 41px;
+        height: 41px;
         position: absolute;
+        top: 40px;
         right: 35px;
         border: none;
         padding: 0;
-        background-color: transparent;
-        color: white;
+        background: url(../images/icons/x-vector.svg);
         font-size: 2.625em;
         cursor: pointer;
+    }
+    .input-error{
+        border: 3px solid $primary-color;
+    }
+    .form-error__message{
+        display: none;
+        color: $primary-color;
+        font-weight: 700;
+        margin: 10px 0 0 0;
     }
 }
 
@@ -188,6 +205,7 @@ header{
     padding: 0px 30px;
     font-size: 1.5em;
     font-weight: 500;
+    z-index: 99;
     .like-icon{
         margin-left: 6px;
         font-size: 21px;
@@ -199,9 +217,11 @@ header{
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    margin-bottom: 80px;
 
     .picture-card{
         margin-right: 20px;
+        position: relative;
         &__link-image{
             width: 350px;
             height: 300px;
@@ -209,32 +229,44 @@ header{
             object-fit: cover;
             cursor: pointer;
         }
+        &__video-icon{
+            font-size: 30px;
+            color: $primary-color;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }        
+        &__date{
+            text-align: right;  
+            color: $primary-color; 
+            font-size: 0.7em;    
+            margin: -5px 0 5px 0;         
+        }
         &__info{
             display: grid;
             grid-template-areas: "a b c";
             grid-template-columns: 1fr auto auto;
             color: $primary-color;
             font-size: 1.5em;
-            margin-bottom: 10px;
+            margin-bottom: 30px;
+            align-items: flex-start;
             &-title{
                 grid-area: a;
-                margin-top: 12px;
-                color: $primary-color;
                 font-weight: 400;
                 text-overflow: ellipsis;
                 max-width: 250px;
+                margin: 0;
             }
             &-likes{
-                font-weight: 500;
-                margin-top: 10px;
                 grid-area: b;
                 justify-self: right;
                 display: flex;
-                align-items: center;
+                margin: 0;
                 &-icon{
-                    margin: -14px 0 0 7px;
-                    font-size: 21px;
+                    margin: 5px 0 0 7px;
+                    font-size: 20px;
                     cursor: pointer;
+                    align-self: center;
                 }
             }
             &-add-like{                
@@ -250,30 +282,36 @@ header{
 /* LIGHTBOX */
 
 .lightbox{
-    margin: 62px auto;
+    margin: 35px auto;
+    padding: 0;
     border: none;
     display: none;
     align-items: center;
+    height: 90vh;
     &__figure{
-        max-width: 1250px;
+        height: 100%;
         &-picture{
-            max-width: 1050px;
-            max-height: 900px;
+            height: 100%;
             border-radius: 5px;
         }
     }
     &__arrows{
         color: $primary-color;
-        font-size: 3em;
-        cursor: pointer;
+        cursor: pointer;        
+        background: url(../images/icons/arrow-lightbox.svg);
+        border: none;
+        width: 30px;
+        height: 48px;
     }
     &__x{
-        color: $primary-color;
-        font-size: 2.625em;
         position: absolute;
-        top: 32px;
-        right: 32px;
+        top: 0;
+        right: 0;
         cursor: pointer;
+        border: none;
+        background: url(../images/icons/x-lightbox.svg);
+        width: 42px;
+        height: 42px;
     }
 }
 

@@ -57,6 +57,11 @@ body{
             border: 1px solid #C4C4C4;
             border-radius: 11px;
             cursor: pointer;
+            &:hover{
+                background-color: $primary-color;
+                border: 1px solid $primary-color;
+                color: white;
+            }
         }
         &__selected{
             background-color: $primary-color;
@@ -102,16 +107,12 @@ h1{
         display: flex;
         justify-content: center;
     }
-    &__picture-container{
-        width: 200px;
-        height: 200px;
-        border-radius: 100%;
-        overflow: hidden;
-    }
     &__picture{
         object-fit: cover;
         width: 200px;
         height: 200px;
+        border-radius: 100%;
+        box-shadow: 0 0 1rem rgba(70, 66, 66, 0.644);
     }
     &__name{
         color: $secondary-color;
