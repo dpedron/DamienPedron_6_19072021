@@ -6,11 +6,14 @@ sortBy en js ?
 
 filtrer image avec tags page photographe
 
-■ Des boutons de navigation permettent de passer d'un élément média
-à l'autre (les utilisateurs peuvent cliquer sur ces boutons pour
-naviguer).
+photographer.html?id=243:1 Uncaught ReferenceError: formValidation is not defined
+    at HTMLFormElement.onsubmit (photographer.html?id=243:1)
+
+
+Toutes nos photos doivent comporter des descriptions textuelles,
+
 ■ Les touches fléchées permettent également de naviguer entre les
 médias.
-
+ KeyboardEvent.key
 
 ajout d'un champ JSON pour la description de chaque image (pour les lecteurs d'écran).
