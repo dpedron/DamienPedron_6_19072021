@@ -1,19 +1,14 @@
 
-alt pour portrait ?
 balises aria
 sortBy en js ?
 
 
-filtrer image avec tags page photographe
-
 photographer.html?id=243:1 Uncaught ReferenceError: formValidation is not defined
     at HTMLFormElement.onsubmit (photographer.html?id=243:1)
 
+    centrage des photos ??
 
-Toutes nos photos doivent comporter des descriptions textuelles,
 
-■ Les touches fléchées permettent également de naviguer entre les
-médias.
- KeyboardEvent.key
+pb filtre et trie // preventDefault travel -> events
 
-ajout d'un champ JSON pour la description de chaque image (pour les lecteurs d'écran).
+

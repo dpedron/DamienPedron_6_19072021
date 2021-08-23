@@ -102,7 +102,7 @@ header {
   border-radius: 11px;
 }
 
-.photographer-card .tag__link:hover, .photographer-card .tag__link:focus {
+.photographer-card .tag__link--selected, .photographer-card .tag__link:hover {
   background-color: #901C1C;
   border: 1px solid #901C1C;
   color: white;
@@ -353,46 +353,76 @@ header {
 
 /* LIGHTBOX */
 .lightbox {
-  margin: 35px auto;
+  position: relative;
   padding: 0;
   border: none;
   display: none;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  height: 90vh;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 100vh;
+  max-width: 90vw;
+  margin: auto;
+  color: #901C1C;
 }
 
 .lightbox__figure {
-  height: 100%;
+  margin: 0 40px;
 }
 
 .lightbox__figure-picture {
-  height: 100%;
+  max-width: 100%;
+  max-height: 89vh;
   border-radius: 5px;
 }
 
+.lightbox__figure-figcaption {
+  font-size: 1.5em;
+}
+
 .lightbox__arrows {
-  color: #901C1C;
   cursor: pointer;
-  background: url(../images/icons/arrow-lightbox.svg);
+  background: url(../images/icons/arrow-lightbox.svg) center center no-repeat;
   border: none;
   width: 30px;
   height: 48px;
 }
 
+.lightbox .left-arrow {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
 .lightbox__x {
   position: absolute;
-  top: 0;
+  top: 20px;
   right: 0;
   cursor: pointer;
   border: none;
-  background: url(../images/icons/x-lightbox.svg);
+  background: url(../images/icons/x-lightbox.svg) center center no-repeat;
   width: 42px;
   height: 42px;
 }
 
 /* MEDIAS QUERIES */
 /* TABLET */
+@media (max-width: 1024px) {
+  /* LIGHTBOX */
+  .lightbox__figure-figcaption {
+    font-size: 0.875em;
+  }
+  .lightbox__arrows {
+    width: 9px;
+    height: 14px;
+  }
+  .lightbox__x {
+    width: 12px;
+    height: 12px;
+  }
+}
+
 /* MOBILE */
 /*# sourceMappingURL=photographer.css.map */

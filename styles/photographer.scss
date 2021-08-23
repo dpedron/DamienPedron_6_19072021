@@ -80,7 +80,7 @@ header{
             padding: 3px 7px;
             border: 1px solid #C4C4C4;
             border-radius: 11px;
-            &:hover, &:focus{
+            &--selected, &:hover{
                 background-color: $primary-color;
                 border: 1px solid $primary-color;
                 color: white;
@@ -282,34 +282,45 @@ header{
 /* LIGHTBOX */
 
 .lightbox{
-    margin: 35px auto;
+    position: relative;
     padding: 0;
     border: none;
     display: none;
     align-items: center;
-    height: 90vh;
+    justify-content: center;
+    height: 100vh;
+    max-width: 90vw;
+    margin: auto;
+    color: $primary-color;
+
     &__figure{
-        height: 100%;
+        margin: 0 40px;
         &-picture{
-            height: 100%;
+            max-width: 100%;
+            max-height: 89vh;
             border-radius: 5px;
+        }
+        &-figcaption{
+            font-size: 1.5em;
         }
     }
     &__arrows{
-        color: $primary-color;
         cursor: pointer;        
-        background: url(../images/icons/arrow-lightbox.svg);
+        background: url(../images/icons/arrow-lightbox.svg) center center no-repeat;
         border: none;
         width: 30px;
         height: 48px;
     }
+    .left-arrow{
+        transform: rotate(180deg);
+    }
     &__x{
         position: absolute;
-        top: 0;
+        top: 20px;
         right: 0;
         cursor: pointer;
         border: none;
-        background: url(../images/icons/x-lightbox.svg);
+        background: url(../images/icons/x-lightbox.svg) center center no-repeat;
         width: 42px;
         height: 42px;
     }
@@ -320,7 +331,21 @@ header{
 /* TABLET */
 
 @media (max-width: 1024px){
-
+    
+    /* LIGHTBOX */
+    .lightbox__figure-figcaption{
+        font-size: 0.875em;
+    }
+    .lightbox{
+        &__arrows{
+            width: 9px;
+            height: 14px;
+        }
+        &__x{
+            width: 12px;
+            height: 12px;
+        }
+    }
 }
 
 /* MOBILE */
