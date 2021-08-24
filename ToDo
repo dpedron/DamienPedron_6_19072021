@@ -1,8 +1,12 @@
 
 balises aria
 sortBy en js ?
+form version mobile
+photo page photographe version mobile
 
 
+
+version tablette ?
 photographer.html?id=243:1 Uncaught ReferenceError: formValidation is not defined
     at HTMLFormElement.onsubmit (photographer.html?id=243:1)
 
@@ -10,5 +14,3 @@ photographer.html?id=243:1 Uncaught ReferenceError: formValidation is not define
 
 
 pb filtre et trie // preventDefault travel -> events
-
-
