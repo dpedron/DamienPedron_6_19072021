@@ -91,12 +91,10 @@ window.onload = function() {
           headerTag.appendChild(headerTagLink);
           headerTags.appendChild(headerTag.cloneNode(true));
       }
-
-
-
         for(i=0;i<photographers.length;i++){
             photographerLink.href = "./pages/photographer.html?id=" + photographers[i].id;
             photographerPortrait.src = "./images/pictures/portraits/" + photographers[i].portrait;
+            photographerPortrait.alt = " ";
             photographerName.innerText = photographers[i].name;
             photographerLocation.innerText = photographers[i].city + ", " + photographers[i].country;
             photographerTagline.innerText = photographers[i].tagline;

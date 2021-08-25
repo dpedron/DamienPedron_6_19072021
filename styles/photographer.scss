@@ -6,28 +6,26 @@
 body{
     max-width: 1440px;
     margin: 0 auto;
-    padding: 0 100px;
     font-family: 'DM Sans', sans-serif;
 }
 
 /* HEADER */
 
 header{
-    margin: 20px 0 40px 0;
+    margin: 20px 100px 40px 100px;
 }
 
 /* MAIN */
 
 .photographer-card{
-    display: grid;
-    grid-template-areas: "a b c";
-    grid-template-columns: max-content;
+    display: flex;
+    flex-direction: row;
     padding: 50px;
+    margin: 0 100px;
     background-color: #FAFAFA;
     min-height: 200px;
     border-radius: 5px;
     &__info{
-        grid-area: a;
         margin-right: 17px;
     }
     &__name{
@@ -48,21 +46,11 @@ header{
     }
     &__categories{
         display: flex;
+        flex-wrap: wrap;
         padding: 0;
     }
-    &__picture-container{
-        grid-area: c;
-        width: 200px;
-        height: 200px;
-        border-radius: 100%;
-        overflow: hidden;
-        justify-self: right;
-        align-self: center;
-        margin-left: 50px;
-    }
     &__picture{
-        grid-area: c;
-        justify-self: right;
+        margin-left: auto;
         object-fit: cover;
         width: 200px;
         height: 200px;
@@ -90,14 +78,14 @@ header{
 }
 
 #photographer-card__button{
-    grid-area: b;
-    width: 170px;
+    min-width: 170px;
     height: 69px;
     background-color: #901C1C;
     border: none;
     cursor: pointer;
     border-radius: 5px;
     padding: 0;
+    margin-right: 20px;
     font-family: 'DM Sans', sans-serif;
     color: white;
     font-size: 1.25em;
@@ -107,7 +95,7 @@ header{
 #photographer-form{
     position: relative;
     display: none;
-    width: 669px;
+    max-width: 669px;
     margin: 62px auto;
     flex-direction: column;
     background-color: #DB8876;
@@ -171,8 +159,14 @@ header{
     }
 }
 
+.custom-select::after {
+    border-radius: 5px;
+    background-color: $primary-color;
+  }
+
 .sort-by{
-    margin: 20px 0 58px 0;
+    display: flex;
+    margin: 20px 0 58px 100px;
     font-size: 1.125em;
     &__label{
         margin-right: 25px;
@@ -215,12 +209,12 @@ header{
 
 #pictures-section{
     display: flex;
-    justify-content: space-between;
     flex-wrap: wrap;
-    margin-bottom: 80px;
+    margin: 0 50px 80px 50px;
 
     .picture-card{
-        margin-right: 20px;
+        margin: 0 auto;
+        padding: 0 30px;
         position: relative;
         &__link-image{
             width: 350px;
@@ -234,7 +228,7 @@ header{
             color: $primary-color;
             position: absolute;
             top: 10px;
-            right: 10px;
+            right: 40px;
         }        
         &__date{
             text-align: right;  
@@ -300,6 +294,12 @@ header{
             max-height: 89vh;
             border-radius: 5px;
         }
+        &-video{
+            max-width: 100%;
+            max-height: 89vh;
+            border-radius: 5px;
+            margin: 0 40px;
+        }
         &-figcaption{
             font-size: 1.5em;
         }
@@ -331,6 +331,104 @@ header{
 /* TABLET */
 
 @media (max-width: 1024px){
+
+    /* HEADER */
+
+    header{
+        margin: 20px 20px 0px 20px;
+    }
+
+    /* MAIN */
+
+    .photographer-card{
+        background-color: white;
+        height: auto;
+        margin: 0;
+        padding: 30px 20px 40px 20px;
+        &__info{
+            margin-right: 17px;
+        }
+        &__name{
+            font-size: 2.25em;
+        }
+        &__location{
+            font-size: 0.8125em;
+        }
+        &__description{            
+            font-size: 0.8125em;
+        }
+        &__picture{
+            min-width: 120px;
+            max-width: 120px;
+            height: 120px;
+        }
+
+        .tag{
+            margin-bottom: 15px;
+            &__link{
+                font-size: 0.8125em;
+            }
+        }
+    }    
+
+    #photographer-card__button{
+        position: fixed;
+        bottom: 30px;
+        right: 50%;
+        margin-right: -85px;
+        height: 35px;
+        font-size: 1.125em;
+        font-weight: 700;
+        z-index: 99999;
+    }
+
+    .likes-counter-and-price{
+        display: none;
+    }
+
+    .sort-by{
+        display: none;
+    }
+
+    #pictures-section{
+        margin: 0 0px 70px 0px;
+    
+        .picture-card{
+            padding: 0 20px;
+                max-width: 335px;
+            &__link-image{
+                max-width: 335px;
+                height: 190px;
+            }
+            &__video-icon{
+                font-size: 20px;
+                top: 10px;
+                right: 30px;
+            }        
+            &__date{
+                font-size: 0.5em;    
+                margin: -5px 0 0 0;         
+            }
+            &__info{
+                font-size: 0.875em;
+                margin-bottom: 10px;                
+                &-likes{
+                    &-icon{
+                        margin-top: 4px;
+                        margin-left: 7px;
+                        font-size: 11px;
+                        cursor: pointer;
+                    }
+                }
+                &-add-like{                
+                    grid-area: c;
+                    display: flex;
+                    align-items: center;
+                    justify-self: right;
+                }
+            }
+        }
+    }
     
     /* LIGHTBOX */
     .lightbox__figure-figcaption{

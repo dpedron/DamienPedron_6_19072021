@@ -3,33 +3,31 @@
 body {
   max-width: 1440px;
   margin: 0 auto;
-  padding: 0 100px;
   font-family: 'DM Sans', sans-serif;
 }
 
 /* HEADER */
 header {
-  margin: 20px 0 40px 0;
+  margin: 20px 100px 40px 100px;
 }
 
 /* MAIN */
 .photographer-card {
-  display: -ms-grid;
-  display: grid;
-      grid-template-areas: "a b c";
-  -ms-grid-columns: max-content;
-      grid-template-columns: -webkit-max-content;
-      grid-template-columns: max-content;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
   padding: 50px;
+  margin: 0 100px;
   background-color: #FAFAFA;
   min-height: 200px;
   border-radius: 5px;
 }
 
 .photographer-card__info {
-  -ms-grid-row: 1;
-  -ms-grid-column: 1;
-  grid-area: a;
   margin-right: 17px;
 }
 
@@ -56,28 +54,13 @@ header {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   padding: 0;
 }
 
-.photographer-card__picture-container {
-  -ms-grid-row: 1;
-  -ms-grid-column: 3;
-  grid-area: c;
-  width: 200px;
-  height: 200px;
-  border-radius: 100%;
-  overflow: hidden;
-      justify-self: right;
-  -ms-flex-item-align: center;
-      align-self: center;
-  margin-left: 50px;
-}
-
 .photographer-card__picture {
-  -ms-grid-row: 1;
-  -ms-grid-column: 3;
-  grid-area: c;
-      justify-self: right;
+  margin-left: auto;
   -o-object-fit: cover;
      object-fit: cover;
   width: 200px;
@@ -109,16 +92,14 @@ header {
 }
 
 #photographer-card__button {
-  -ms-grid-row: 1;
-  -ms-grid-column: 2;
-  grid-area: b;
-  width: 170px;
+  min-width: 170px;
   height: 69px;
   background-color: #901C1C;
   border: none;
   cursor: pointer;
   border-radius: 5px;
   padding: 0;
+  margin-right: 20px;
   font-family: 'DM Sans', sans-serif;
   color: white;
   font-size: 1.25em;
@@ -128,7 +109,7 @@ header {
 #photographer-form {
   position: relative;
   display: none;
-  width: 669px;
+  max-width: 669px;
   margin: 62px auto;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
@@ -204,8 +185,16 @@ header {
   margin: 10px 0 0 0;
 }
 
+.custom-select::after {
+  border-radius: 5px;
+  background-color: #901C1C;
+}
+
 .sort-by {
-  margin: 20px 0 58px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 20px 0 58px 100px;
   font-size: 1.125em;
 }
 
@@ -257,16 +246,14 @@ header {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  margin-bottom: 80px;
+  margin: 0 50px 80px 50px;
 }
 
 #pictures-section .picture-card {
-  margin-right: 20px;
+  margin: 0 auto;
+  padding: 0 30px;
   position: relative;
 }
 
@@ -284,7 +271,7 @@ header {
   color: #901C1C;
   position: absolute;
   top: 10px;
-  right: 10px;
+  right: 40px;
 }
 
 #pictures-section .picture-card__date {
@@ -379,6 +366,13 @@ header {
   border-radius: 5px;
 }
 
+.lightbox__figure-video {
+  max-width: 100%;
+  max-height: 89vh;
+  border-radius: 5px;
+  margin: 0 40px;
+}
+
 .lightbox__figure-figcaption {
   font-size: 1.5em;
 }
@@ -410,6 +404,98 @@ header {
 /* MEDIAS QUERIES */
 /* TABLET */
 @media (max-width: 1024px) {
+  /* HEADER */
+  header {
+    margin: 20px 20px 0px 20px;
+  }
+  /* MAIN */
+  .photographer-card {
+    background-color: white;
+    height: auto;
+    margin: 0;
+    padding: 30px 20px 40px 20px;
+  }
+  .photographer-card__info {
+    margin-right: 17px;
+  }
+  .photographer-card__name {
+    font-size: 2.25em;
+  }
+  .photographer-card__location {
+    font-size: 0.8125em;
+  }
+  .photographer-card__description {
+    font-size: 0.8125em;
+  }
+  .photographer-card__picture {
+    min-width: 120px;
+    max-width: 120px;
+    height: 120px;
+  }
+  .photographer-card .tag {
+    margin-bottom: 15px;
+  }
+  .photographer-card .tag__link {
+    font-size: 0.8125em;
+  }
+  #photographer-card__button {
+    position: fixed;
+    bottom: 30px;
+    right: 50%;
+    margin-right: -85px;
+    height: 35px;
+    font-size: 1.125em;
+    font-weight: 700;
+    z-index: 99999;
+  }
+  .likes-counter-and-price {
+    display: none;
+  }
+  .sort-by {
+    display: none;
+  }
+  #pictures-section {
+    margin: 0 0px 70px 0px;
+  }
+  #pictures-section .picture-card {
+    padding: 0 20px;
+    max-width: 335px;
+  }
+  #pictures-section .picture-card__link-image {
+    max-width: 335px;
+    height: 190px;
+  }
+  #pictures-section .picture-card__video-icon {
+    font-size: 20px;
+    top: 10px;
+    right: 30px;
+  }
+  #pictures-section .picture-card__date {
+    font-size: 0.5em;
+    margin: -5px 0 0 0;
+  }
+  #pictures-section .picture-card__info {
+    font-size: 0.875em;
+    margin-bottom: 10px;
+  }
+  #pictures-section .picture-card__info-likes-icon {
+    margin-top: 4px;
+    margin-left: 7px;
+    font-size: 11px;
+    cursor: pointer;
+  }
+  #pictures-section .picture-card__info-add-like {
+    -ms-grid-row: 1;
+    -ms-grid-column: 3;
+    grid-area: c;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    justify-self: right;
+  }
   /* LIGHTBOX */
   .lightbox__figure-figcaption {
     font-size: 0.875em;
