@@ -72,7 +72,7 @@ header {
 
 .photographer-card .tag {
   list-style: none;
-  margin-right: 5px;
+  margin: 13px 5px 0 0;
 }
 
 .photographer-card .tag__link {
@@ -109,7 +109,7 @@ header {
 #photographer-form {
   position: relative;
   display: none;
-  max-width: 669px;
+  max-width: 599px;
   margin: 62px auto;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
@@ -142,6 +142,10 @@ header {
 
 #photographer-form input:focus, #photographer-form textarea:focus {
   outline: none;
+}
+
+#photographer-form textarea {
+  padding-top: 10px;
 }
 
 #photographer-form #message {
@@ -183,11 +187,6 @@ header {
   color: #901C1C;
   font-weight: 700;
   margin: 10px 0 0 0;
-}
-
-.custom-select::after {
-  border-radius: 5px;
-  background-color: #901C1C;
 }
 
 .sort-by {
@@ -239,7 +238,11 @@ header {
 
 .likes-counter-and-price .like-icon {
   margin-left: 6px;
+  margin-right: auto;
   font-size: 21px;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
 }
 
 #pictures-section {
@@ -356,21 +359,31 @@ header {
   color: #901C1C;
 }
 
-.lightbox__figure {
+.lightbox .media-container {
+  position: relative;
   margin: 0 40px;
+  max-width: 100%;
+  max-height: 85vh;
+  border-radius: 5px;
+}
+
+.lightbox__video {
+  max-width: 100%;
+  max-height: 85vh;
+}
+
+.lightbox__video-title {
+  font-size: 1.5em;
+  margin: 0;
+}
+
+.lightbox__figure {
+  margin: 0;
 }
 
 .lightbox__figure-picture {
   max-width: 100%;
-  max-height: 89vh;
-  border-radius: 5px;
-}
-
-.lightbox__figure-video {
-  max-width: 100%;
-  max-height: 89vh;
-  border-radius: 5px;
-  margin: 0 40px;
+  max-height: 85vh;
 }
 
 .lightbox__figure-figcaption {
@@ -392,8 +405,8 @@ header {
 
 .lightbox__x {
   position: absolute;
-  top: 20px;
-  right: 0;
+  top: 0;
+  right: -75px;
   cursor: pointer;
   border: none;
   background: url(../images/icons/x-lightbox.svg) center center no-repeat;
@@ -500,6 +513,9 @@ header {
   .lightbox__figure-figcaption {
     font-size: 0.875em;
   }
+  .lightbox .media-container {
+    margin: 0 10px;
+  }
   .lightbox__arrows {
     width: 9px;
     height: 14px;
@@ -507,8 +523,36 @@ header {
   .lightbox__x {
     width: 12px;
     height: 12px;
+    right: -50px;
   }
 }
 
 /* MOBILE */
+@media (max-width: 768px) {
+  #photographer-form {
+    margin: 0;
+  }
+  #photographer-form h1 {
+    font-size: 2.25em;
+  }
+  #photographer-form label {
+    font-size: 1.5em;
+  }
+  #photographer-form input, #photographer-form textarea {
+    font-size: 1.5em;
+  }
+  #photographer-form #message {
+    height: 170px;
+  }
+  #photographer-form #submit {
+    font-size: 1.125em;
+    height: 35px;
+    margin: 26px auto 0 auto;
+  }
+  #photographer-form #close {
+    width: 19px;
+    height: 19px;
+    top: 27px;
+  }
+}
 /*# sourceMappingURL=photographer.css.map */

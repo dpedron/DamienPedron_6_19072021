@@ -59,7 +59,7 @@ header{
     }
         .tag{
             list-style: none;
-            margin-right: 5px;
+            margin: 13px 5px 0 0;
         &__link{
             text-decoration: none;
             font-weight: 500;
@@ -95,7 +95,7 @@ header{
 #photographer-form{
     position: relative;
     display: none;
-    max-width: 669px;
+    max-width: 599px;
     margin: 62px auto;
     flex-direction: column;
     background-color: #DB8876;
@@ -120,6 +120,9 @@ header{
         &:focus{
             outline: none;
         }
+    }        
+    textarea{
+        padding-top: 10px;
     }
     #message{
         height: 170px;
@@ -159,11 +162,6 @@ header{
     }
 }
 
-.custom-select::after {
-    border-radius: 5px;
-    background-color: $primary-color;
-  }
-
 .sort-by{
     display: flex;
     margin: 20px 0 58px 100px;
@@ -202,7 +200,9 @@ header{
     z-index: 99;
     .like-icon{
         margin-left: 6px;
+        margin-right: auto;
         font-size: 21px;
+        align-self: center;
     }
 
 }
@@ -286,19 +286,26 @@ header{
     max-width: 90vw;
     margin: auto;
     color: $primary-color;
-
-    &__figure{
+    .media-container{
+        position: relative;
         margin: 0 40px;
+        max-width: 100%;
+        max-height: 85vh;
+        border-radius: 5px;
+    }    
+    &__video{
+        max-width: 100%;
+        max-height: 85vh;
+        &-title{
+            font-size: 1.5em;
+            margin: 0;
+        }
+    }
+    &__figure{
+        margin: 0;
         &-picture{
             max-width: 100%;
-            max-height: 89vh;
-            border-radius: 5px;
-        }
-        &-video{
-            max-width: 100%;
-            max-height: 89vh;
-            border-radius: 5px;
-            margin: 0 40px;
+            max-height: 85vh;
         }
         &-figcaption{
             font-size: 1.5em;
@@ -316,8 +323,8 @@ header{
     }
     &__x{
         position: absolute;
-        top: 20px;
-        right: 0;
+        top: 0;
+        right: -75px;
         cursor: pointer;
         border: none;
         background: url(../images/icons/x-lightbox.svg) center center no-repeat;
@@ -435,6 +442,9 @@ header{
         font-size: 0.875em;
     }
     .lightbox{
+        .media-container{
+        margin: 0 10px;
+        }    
         &__arrows{
             width: 9px;
             height: 14px;
@@ -442,6 +452,7 @@ header{
         &__x{
             width: 12px;
             height: 12px;
+            right: -50px;
         }
     }
 }
@@ -449,5 +460,29 @@ header{
 /* MOBILE */
 
 @media (max-width: 768px){
-    
+    #photographer-form{
+        margin: 0;
+        h1{
+            font-size: 2.25em;
+        }
+        label{        
+            font-size: 1.5em;
+        }
+        input, textarea{           
+            font-size: 1.5em;
+        }
+        #message{
+            height: 170px;
+        }
+        #submit{
+            font-size: 1.125em;
+            height: 35px;
+            margin: 26px auto 0 auto;
+        }
+        #close{
+            width: 19px;
+            height: 19px;
+            top: 27px;
+        }
+    }
 }
