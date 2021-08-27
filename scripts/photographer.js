@@ -36,11 +36,11 @@ window.onload = function() {
     const photographerInfoItems = [photographerName, photographerLocation, photographerTagline, photographerTags];    
     const photographerCardItems = [photographerInfo, photographerButton, photographerPortrait];
 
-    for(i=0;i<photographerInfoItems.length;i++){
+    for(let i=0;i<photographerInfoItems.length;i++){
         photographerInfo.appendChild(photographerInfoItems[i]);
     }
 
-    for(i=0;i<photographerCardItems.length;i++){
+    for(let i=0;i<photographerCardItems.length;i++){
         photographerCard.appendChild(photographerCardItems[i]);
     }
 
@@ -56,7 +56,7 @@ window.onload = function() {
         _media= media.filter(m => m.photographerId == id);                          // Selected photographer media
 
 
-        for(i=0;i<_photographer.length; i++){
+        for(let i=0;i<_photographer.length; i++){
             
                 /* Put photographer name as title of the page */
                 document.title = _photographer[i].name 
@@ -67,7 +67,7 @@ window.onload = function() {
                 photographerTagline.innerText = _photographer[i].tagline;
                 photographerTags.innerHTML = "";
                 photographerPortrait.src = "../images/pictures/Photographers ID Photos/" + _photographer[i].portrait;
-                for(j=0;j<_photographer[i].tags.length;j++){
+                for(let j=0;j<_photographer[i].tags.length;j++){
                     photographerTagLink.innerText = _photographer[i].tags[j];
                     hashtag.innerText = "#";
                     photographerTagLink.prepend(hashtag);
@@ -86,7 +86,7 @@ window.onload = function() {
             e.preventDefault();
             const selectedTag = e.currentTarget;
             const allPictureCard = document.querySelectorAll(".picture-card");
-            for(i=0;i<_media.length;i++){
+            for(let i=0;i<_media.length;i++){
                 if(selectedTag.innerText == "#"+_media[i].tags.join()){                 // A filter is selected ...
                     document.getElementById('pC_' + _media[i].id).style.display = "block";                          // ... show all selected media ...
                 } else {
@@ -105,7 +105,7 @@ window.onload = function() {
                 });
                 selectedTag.classList.add("tag__link--selected");                        // ... and select the new filter
             }
-        };
+        }
 
         allTags.forEach(element => {
             element.addEventListener('click', mediaFilter)
@@ -115,12 +115,12 @@ window.onload = function() {
 
         const formItems = [formHeading, formFirstLabel, formFirstInput, formFirstError, formLastLabel, formLastInput, formLastError, formEmailLabel, formEmailInput, formEmailError, formMessageLabel, formMessageInput, formMessageError, formSubmit, formClose]
 
-        for(i=0;i<formItems.length;i++){
+        for(let i=0;i<formItems.length;i++){
             form.appendChild(formItems[i]);
         }        
         document.querySelector('body').appendChild(form);
         
-        formHeading.innerHTML = "Contactez-moi<br>\ " + photographerName.innerText;
+        formHeading.innerHTML = "Contactez-moi<br> " + photographerName.innerText;
         formFirstLabel.innerText = "Prénom";
         formLastLabel.innerText = "Nom";
         formEmailLabel.innerText = "Email";
@@ -161,8 +161,6 @@ window.onload = function() {
         const sortByLabel = document.createElement("label");
         sortByLabel.className = "sort-by__label";
         sortByLabel.innerText = "Trier par";
-        const customSelect = document.createElement("div");
-        customSelect.className = "custom-select";
         const sortBySelect = document.createElement("select");
         sortBySelect.className = "sort-by__select";
         const sortOptions = ['Popularité', 'Date', 'Titre'];
@@ -172,9 +170,8 @@ window.onload = function() {
 
         document.querySelector('main').appendChild(sortBy);
         sortBy.appendChild(sortByLabel);
-        sortBy.appendChild(customSelect);
-        customSelect.appendChild(sortBySelect);        
-        for(i=0;i<sortOptions.length;i++){
+        sortBy.appendChild(sortBySelect);        
+        for(let i=0;i<sortOptions.length;i++){
             sortByOption.innerText = sortOptions[i];
             sortByOption.setAttribute('value', sortOptionsValue[i]);
             sortBySelect.appendChild(sortByOption.cloneNode(true));
@@ -185,7 +182,7 @@ window.onload = function() {
         let photographerLikes = []; /* Array of all likes */
         let totalPhotographerLikes = null; /* Total of likes */
         const reducer = (accumulator, currentValue) => accumulator + currentValue; /* Sum of likes */
-        for(i=0;i<_media.length;i++){
+        for(let i=0;i<_media.length;i++){
             photographerLikes.push(_media[i].likes);
             totalPhotographerLikes = photographerLikes.reduce(reducer);
         }
@@ -207,7 +204,7 @@ window.onload = function() {
         likesCounterAndPrice.appendChild(likeIconFull);
         likesCounterAndPrice.appendChild(price);
         
-        for(i=0;i<_photographer.length;i++){
+        for(let i=0;i<_photographer.length;i++){
                 price.innerHTML = photographers[i].price + "€ / jour";
         }
         /* Pictures section DOM*/
@@ -215,7 +212,8 @@ window.onload = function() {
         const pictureCard = document.createElement("article");
         pictureCard.className = "picture-card";
         const pictureLink = document.createElement("a");
-        pictureLink.className = "picture-card__link";        
+        pictureLink.className = "picture-card__link";
+        pictureLink.href = " ";
         const picture = document.createElement("img");
         picture.className = "picture-card__link-image";
         const video = document.createElement("video");
@@ -258,7 +256,7 @@ window.onload = function() {
                     break;
                 }
                 
-                for(i=0;i<_media.length;i++){
+                for(let i=0;i<_media.length;i++){
                     allPictureCard.forEach(element => {
                         if(element.id == "pC_" + _media[i].id){
                             element.style.order = i;
@@ -295,13 +293,13 @@ window.onload = function() {
                         return(0);
                     }
                 }
-            };
+            }
         
         document.querySelector('main').appendChild(picturesSection);
 
             picturesSection.innerHTML = "";                 // Empty picture section ...
             sortMedia();                                    // ... sort the media by user preference ...
-            for(i=0;i<_media.length;i++){                   // ... fill the picture section
+            for(let i=0;i<_media.length;i++){                   // ... fill the picture section
                 pictureCard.innerHTML = "";
                 pictureInfo.innerHTML = "";
                 pictureAddLike.innerHTML = "";
@@ -314,11 +312,13 @@ window.onload = function() {
                         pictureCard.appendChild(videoIcon); 
                         video.appendChild(videoSource);            
                         videoSource.src = "../images/pictures/" + photographerName.innerHTML + "/" + _media[i].video;
+                        video.title = _media[i].title;
                     }
 
                     if(_media[i].image){                      // The media is a picture 
                         pictureLink.appendChild(picture);             
                         picture.src = "../images/pictures/" + photographerName.innerHTML + "/" + _media[i].image;
+                        picture.alt = _media[i].title;
                     }
                     pictureCard.appendChild(pictureLink);
                     pictureCard.appendChild(pictureDate);
@@ -348,7 +348,7 @@ window.onload = function() {
                 likesCounter.innerText--;
                 e.currentTarget.firstChild.className = "far fa-heart picture-card__info-likes-icon";
             }
-        };
+        }
 
         const allIconLike = document.querySelectorAll('.picture-card__info-add-like');
 
@@ -377,7 +377,7 @@ window.onload = function() {
         const lightboxLeft = document.createElement('button');
         lightboxLeft.className = "lightbox__arrows left-arrow";
         const lightboxRight = document.createElement('button');        
-        lightboxRight.className = "lightbox__arrows"
+        lightboxRight.className = "lightbox__arrows .right-arrow"
         const lightboxClose = document.createElement('button');
         lightboxClose.className = "lightbox__x";
 
@@ -389,6 +389,7 @@ window.onload = function() {
         /* Open lightbox */
 
         function openLigthbox(e){ 
+            e.preventDefault();
             mediaContainer.innerHTML = "";  
             lightboxModal.appendChild(lightboxLeft);
             lightboxModal.appendChild(mediaContainer);
@@ -396,7 +397,7 @@ window.onload = function() {
             lightboxModal.style.display = "flex";
             document.querySelector('main').style.display = "none";
             document.querySelector('header').style.display = "none";
-            for(i=0;i<_media.length;i++){
+            for(let i=0;i<_media.length;i++){
                 if("pC-link_" + _media[i].id == e.currentTarget.id){ 
                     if(_media[i].video){                                    // The media is a video
                         mediaContainer.appendChild(lightboxVideo);
@@ -440,10 +441,14 @@ window.onload = function() {
         function lightboxNavigation(e){
             let position = null;
             mediaContainer.innerHTML = "";
-            if(e.currentTarget == document.querySelector(".left-arrow")){  // Next media
+            if(e.currentTarget == document.querySelector(".left-arrow") || e.key === "ArrowLeft"){  // Previous media
                 position = mediaPosition - 1;
-            } else {                                                       // Previous media
+            } 
+            if(e.currentTarget == document.querySelector(".right-arrow") || e.key === "ArrowRight"){ // Next media                                                      // Next media
                 position = mediaPosition + 1;
+            }
+            if (e.key !== "ArrowRight" && e.key !== "ArrowLeft"){
+                position = mediaPosition;
             }
 
             if(position == _media.length){                                  // This is the last picture go back to the first
@@ -471,28 +476,142 @@ window.onload = function() {
                 lightboxVideoTitle.innerText = _media[position].title;
                 mediaPosition = _media.indexOf(_media[position]);  
             }
-            mediaContainer.appendChild(lightboxClose);
+            mediaContainer.appendChild(lightboxClose);  
+
+            if(e.key == "Escape"){                                          // "Escape" to close
+                closeLigthbox();
+            }
         }
 
         lightboxLeft.addEventListener('click', lightboxNavigation);
-        lightboxRight.addEventListener('click', lightboxNavigation);
-
-        /* Lightbox keyboard navigation */
-
-        function keyboardNavigation(key){
-            if(key.keyCode =="27"){         // "Escape" to close
-                closeLigthbox();
-            }
-            if(key.keyCode == "37"){         // "arrow left" to previous media
-                prevMedia();
-            }
-            if(key.keyCode == "39"){         // "arrow right" to next media
-                nextMedia();
-            }
-        }
-        
-        window.addEventListener("keydown", keyboardNavigation);
+        lightboxRight.addEventListener('click', lightboxNavigation);        
+        window.addEventListener("keydown", lightboxNavigation);
     })
 }
+
+
+/* Form modal DOM*/
+const form = document.createElement("form");
+form.id = "photographer-form";
+form.setAttribute('onsubmit', 'event.preventDefault(); return formValidation();') 
+const formHeading = document.createElement("h1");
+const formFirstLabel = document.createElement("label");
+formFirstLabel.setAttribute('for', 'first');
+const formFirstInput = document.createElement("input");
+formFirstInput.setAttribute('type', 'text');
+formFirstInput.id = "first";
+formFirstInput.setAttribute('name', 'first');
+formFirstInput.setAttribute('placeholder', 'Prénom');
+const formLastLabel = document.createElement("label")
+formLastLabel.setAttribute('for', 'last');
+const formLastInput = document.createElement("input");
+formLastInput.setAttribute('type', 'text');
+formLastInput.id = "last";
+formLastInput.setAttribute('name', 'last');
+formLastInput.setAttribute('placeholder', 'Nom');
+const formEmailLabel = document.createElement("label")
+formEmailLabel.setAttribute('for', 'email');
+const formEmailInput = document.createElement("input");
+formEmailInput.setAttribute('type', 'text');
+formEmailInput.setAttribute('placeholder', 'email@exemple.com');
+formEmailInput.id = "email";
+formEmailInput.setAttribute('name', 'email');
+const formMessageLabel = document.createElement("label");
+formMessageLabel.setAttribute('for', 'message');
+const formMessageInput = document.createElement("textarea");
+formMessageInput.setAttribute('type', 'text');
+formMessageInput.id = "message";
+formMessageInput.setAttribute('name', 'message');
+formMessageInput.setAttribute('placeholder', 'Votre message');
+const formSubmit = document.createElement("button");
+formSubmit.id = "submit";
+const formClose = document.createElement("button");
+formClose.id = "close";
+
+/* Form validation */
+
+const regexName = /^[A-ZÀÈÉÊa-zàäâéêèëçôîùû][A-ZÀÈÉÊa-zàäâéêèëçôîùû\-'\s]+$/; // First and last name input validation test
+const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Email input validation test
+const unvalidName = "Veuillez remplir le champ ci-dessus (deux caractères au moins)"; 
+const unvalidEmail = 'Veuillez saisir une adresse mail valide (email@exemple.com)';
+const unvalidMessage = "Veuillez saisir votre message (20 caractères minimum)";
+const formFirstError = document.createElement("p");
+formFirstError.className = "form-error__message"  
+formFirstError.innerText = unvalidName;
+const formLastError = document.createElement("p");
+formLastError.className = "form-error__message";
+formLastError.innerText = unvalidName;        
+const formEmailError = document.createElement("p");
+formEmailError.className = "form-error__message";
+formEmailError.innerText = unvalidEmail;
+const formMessageError = document.createElement("p");
+formMessageError.className = "form-error__message";
+formMessageError.innerText = unvalidMessage;
+
+function firstValidation(){
+    if(!regexName.test(formFirstInput.value)){
+        formFirstError.style.display = "block";
+        formFirstInput.classList.add("input-error");
+        return false;
+    } else {                
+        formFirstError.style.display = "none";
+        formFirstInput.classList.remove("input-error");
+        return true;
+    }
+} 
+
+function lastValidation(){        
+    if(!regexName.test(formLastInput.value)){
+        formLastError.style.display = "block";
+        formLastInput.classList.add("input-error");
+        return false;
+    } else {                
+        formLastError.style.display = "none";
+        formLastInput.classList.remove("input-error");
+        return true;
+    }
+} 
+
+function emailValidation(){        
+    if(!regexEmail.test(formEmailInput.value)){
+        formEmailError.style.display = "block";
+        formEmailInput.classList.add("input-error");
+        return false;
+    } else {                
+        formEmailError.style.display = "none";
+        formEmailInput.classList.remove("input-error");
+        return true;
+    }
+}
+
+function messageValidation(){        
+    if(formMessageInput.value.length < 20){
+        formMessageError.style.display = "block";
+        formMessageInput.classList.add("input-error");
+        return false;
+    } else {                
+        formMessageError.style.display = "none";
+        formMessageInput.classList.remove("input-error");
+        return true;
+    }
+}  
+
+function formValidation(){
+            
+    let arrayValidation = [firstValidation(), lastValidation(), emailValidation(), messageValidation()];   
+
+    for(let i = 0; i < arrayValidation.length; i++){  
+        if(arrayValidation[i]==false){
+            return false;
+        }
+    }
+    form.style.display = "none";
+    document.querySelector('main').style.display = "block";
+    document.querySelector('header').style.display = "block";
+    console.log(formFirstInput.value + " " + formLastInput.value + " a laissé le message suivant : " + formMessageInput.value + " , il souhaite être contacté à l'adresse suivante : " + formEmailInput.value);
+    form.reset();
+}
+
+form.addEventListener('submit', formValidation);
 
         
