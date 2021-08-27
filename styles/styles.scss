@@ -6,7 +6,7 @@
 body{
     max-width: 1440px;
     margin: 20px auto 0 auto;
-    font-family: 'DM Sans', sans-serif;
+    font-family: $font;
 }
 
 /* HEADER */
@@ -19,7 +19,7 @@ body{
     left: 50%;
     margin: -14px 0 0 -107px;
     z-index: 9999;
-    background-color: #DB8876;
+    background-color: $bg-color;
     font-weight: 700;
     font-size: 1.125em;
     width: 182px;
@@ -54,7 +54,7 @@ body{
             font-size: 0.75em;
             color: $primary-color;
             padding: 3px 7px;
-            border: 1px solid #C4C4C4;
+            border: 1px solid $border-color;
             border-radius: 11px;
             cursor: pointer;
             &:hover{
@@ -142,8 +142,6 @@ h1{
 
 /* MEDIAS QUERIES */
 
-/* TABLET */
-
 @media (max-width: 1024px){
 
     .banner{
@@ -167,8 +165,6 @@ h1{
         min-width: 40%;
     }
 }
-
-/* MOBILE */
 
 @media (max-width: 768px){
     .logo{

@@ -44,12 +44,12 @@ window.onload = function() {
         photographerCard.appendChild(photographerCardItems[i]);
     }
 
-    fetch("../json/FishEyeData.json")
+    fetch("../json/FishEyeData.json")                                               // Get all the data for photographers and media
     .then(response => response.json())    
     .then(function(data){
         
         let params = new URLSearchParams(document.location.search.substring(1));
-        let id = params.get("id");                                                  // Get photographer ID
+        let id = params.get("id");                                                  // Get photographer ID selected on the home page
         photographers = data.photographers;                                         // All photographers data
         _photographer = photographers.filter(p => p.id == id);                      // Selected photographer data
         media = data.media;                                                         // All media
@@ -61,7 +61,7 @@ window.onload = function() {
                 /* Put photographer name as title of the page */
                 document.title = _photographer[i].name 
 
-                /* Photographer card DOM */ 
+                /* Complete photographer card with data */ 
                 photographerName.innerText = _photographer[i].name;
                 photographerLocation.innerText = _photographer[i].city + ", " + _photographer[i].country;
                 photographerTagline.innerText = _photographer[i].tagline;
@@ -87,10 +87,10 @@ window.onload = function() {
             const selectedTag = e.currentTarget;
             const allPictureCard = document.querySelectorAll(".picture-card");
             for(let i=0;i<_media.length;i++){
-                if(selectedTag.innerText == "#"+_media[i].tags.join()){                 // A filter is selected ...
-                    document.getElementById('pC_' + _media[i].id).style.display = "block";                          // ... show all selected media ...
+                if(selectedTag.innerText == "#"+_media[i].tags.join()){                  // A filter is selected ...
+                    document.getElementById('pC_' + _media[i].id).style.display = "block";// ... show all selected media ...
                 } else {
-                    document.getElementById('pC_' + _media[i].id).style.display = "none";                           // ... and close all non-selected media
+                    document.getElementById('pC_' + _media[i].id).style.display = "none";// ... and close all non-selected media
                 }
             }
             
@@ -110,47 +110,6 @@ window.onload = function() {
         allTags.forEach(element => {
             element.addEventListener('click', mediaFilter)
         });
-        
-        
-
-        const formItems = [formHeading, formFirstLabel, formFirstInput, formFirstError, formLastLabel, formLastInput, formLastError, formEmailLabel, formEmailInput, formEmailError, formMessageLabel, formMessageInput, formMessageError, formSubmit, formClose]
-
-        for(let i=0;i<formItems.length;i++){
-            form.appendChild(formItems[i]);
-        }        
-        document.querySelector('body').appendChild(form);
-        
-        formHeading.innerHTML = "Contactez-moi<br> " + photographerName.innerText;
-        formFirstLabel.innerText = "Prénom";
-        formLastLabel.innerText = "Nom";
-        formEmailLabel.innerText = "Email";
-        formMessageLabel.innerText = "Votre message";
-        formSubmit.innerText = "Envoyer";
-        formClose.src = "../images/x-vector.svg";
-
-        /* Open form */
-
-        function openModal(){
-            form.style.display = "flex";
-            document.querySelector('main').style.display = "none";
-            document.querySelector('header').style.display = "none";
-        }    
-        document.getElementById('photographer-card__button').addEventListener('click', openModal);
-
-        /* Close form */
-
-        function closeModal(e){
-            e.preventDefault();
-            form.style.display = "none";
-            document.querySelector('main').style.display = "block";
-            document.querySelector('header').style.display = "block";
-        }
-        document.getElementById('close').addEventListener('click', closeModal);
-
-        formFirstInput.addEventListener('change', firstValidation);
-        formLastInput.addEventListener('change', lastValidation);
-        formEmailInput.addEventListener('change', emailValidation);
-        formMessageInput.addEventListener('change', messageValidation);
 
         /* Sort-by DOM */
 
@@ -167,7 +126,6 @@ window.onload = function() {
         const sortOptionsValue = ['popularity', 'date', 'title']
         const sortByOption = document.createElement("option");        
         sortByOption.className = "sort-by__select__option";
-
         document.querySelector('main').appendChild(sortBy);
         sortBy.appendChild(sortByLabel);
         sortBy.appendChild(sortBySelect);        
@@ -179,12 +137,12 @@ window.onload = function() {
         
         /* Likes counter and price */ 
         
-        let photographerLikes = []; /* Array of all likes */
-        let totalPhotographerLikes = null; /* Total of likes */
-        const reducer = (accumulator, currentValue) => accumulator + currentValue; /* Sum of likes */
-        for(let i=0;i<_media.length;i++){
-            photographerLikes.push(_media[i].likes);
-            totalPhotographerLikes = photographerLikes.reduce(reducer);
+        let photographerLikes = [];                                                     
+        let totalPhotographerLikes = null;                                              
+        const reducer = (accumulator, currentValue) => accumulator + currentValue; 
+        for(let i=0;i<_media.length;i++){                                               
+            photographerLikes.push(_media[i].likes);                                    // Array of all likes 
+            totalPhotographerLikes = photographerLikes.reduce(reducer);                 // Total of the sum of all likes
         }
 
         const likesCounterAndPrice = document.createElement("div");
@@ -207,6 +165,7 @@ window.onload = function() {
         for(let i=0;i<_photographer.length;i++){
                 price.innerHTML = photographers[i].price + "€ / jour";
         }
+
         /* Pictures section DOM*/
 
         const pictureCard = document.createElement("article");
@@ -256,7 +215,7 @@ window.onload = function() {
                     break;
                 }
                 
-                for(let i=0;i<_media.length;i++){
+                for(let i=0;i<_media.length;i++){ 
                     allPictureCard.forEach(element => {
                         if(element.id == "pC_" + _media[i].id){
                             element.style.order = i;
@@ -295,10 +254,10 @@ window.onload = function() {
                 }
             }
         
-        document.querySelector('main').appendChild(picturesSection);
+            document.querySelector('main').appendChild(picturesSection);
 
-            picturesSection.innerHTML = "";                 // Empty picture section ...
-            sortMedia();                                    // ... sort the media by user preference ...
+            picturesSection.innerHTML = "";                     // Empty picture section ...
+            sortMedia();                                        // ... sort the media by user preference ...
             for(let i=0;i<_media.length;i++){                   // ... fill the picture section
                 pictureCard.innerHTML = "";
                 pictureInfo.innerHTML = "";
@@ -334,15 +293,17 @@ window.onload = function() {
             }
 
         sortBySelect.addEventListener("change", sortMedia);
+
+        /* Likes */
         
         function addOrRemoveLike(e){
             let mediaLikeCount = e.currentTarget.previousSibling;
-            if(e.currentTarget.className !== "picture-card__info-add-like liked"){
+            if(e.currentTarget.className !== "picture-card__info-add-like liked"){           // The media is not already "liked", add a like
                 e.currentTarget.classList.add("liked");
                 mediaLikeCount.innerText++; 
                 likesCounter.innerText++;
                 e.currentTarget.firstChild.className = "fas fa-heart picture-card__info-likes-icon";
-            } else {
+            } else {                                                                         // The media is already "liked", remove a like
                 e.currentTarget.classList.remove("liked");
                 mediaLikeCount.innerText--; 
                 likesCounter.innerText--;
@@ -377,7 +338,7 @@ window.onload = function() {
         const lightboxLeft = document.createElement('button');
         lightboxLeft.className = "lightbox__arrows left-arrow";
         const lightboxRight = document.createElement('button');        
-        lightboxRight.className = "lightbox__arrows .right-arrow"
+        lightboxRight.className = "lightbox__arrows right-arrow"
         const lightboxClose = document.createElement('button');
         lightboxClose.className = "lightbox__x";
 
@@ -386,7 +347,7 @@ window.onload = function() {
         const allPicturesLinks = document.querySelectorAll('.picture-card__link');
         let mediaPosition = 0;                                              //position of active media in the lightbox        
 
-        /* Open lightbox */
+        /* Open and create lightbox */
 
         function openLigthbox(e){ 
             e.preventDefault();
@@ -444,10 +405,10 @@ window.onload = function() {
             if(e.currentTarget == document.querySelector(".left-arrow") || e.key === "ArrowLeft"){  // Previous media
                 position = mediaPosition - 1;
             } 
-            if(e.currentTarget == document.querySelector(".right-arrow") || e.key === "ArrowRight"){ // Next media                                                      // Next media
+            if(e.currentTarget == document.querySelector(".right-arrow") || e.key === "ArrowRight"){ // Next media                                                      
                 position = mediaPosition + 1;
             }
-            if (e.key !== "ArrowRight" && e.key !== "ArrowLeft"){
+            if (e.key !== "ArrowRight" && e.key !== "ArrowLeft" && e.currentTarget !== document.querySelector(".left-arrow") && e.currentTarget !== document.querySelector(".right-arrow")){
                 position = mediaPosition;
             }
 
@@ -486,9 +447,44 @@ window.onload = function() {
         lightboxLeft.addEventListener('click', lightboxNavigation);
         lightboxRight.addEventListener('click', lightboxNavigation);        
         window.addEventListener("keydown", lightboxNavigation);
+
+        /* Form */
+
+        document.querySelector('body').appendChild(form);
+        
+        formHeading.innerHTML = "Contactez-moi<br> " + photographerName.innerText;
+        formFirstLabel.innerText = "Prénom";
+        formLastLabel.innerText = "Nom";
+        formEmailLabel.innerText = "Email";
+        formMessageLabel.innerText = "Votre message";
+        formSubmit.innerText = "Envoyer";
+        formClose.src = "../images/x-vector.svg";
+
+        /* Open form */
+
+        function openModal(){
+            form.style.display = "flex";
+            document.querySelector('main').style.display = "none";
+            document.querySelector('header').style.display = "none";
+        }    
+        document.getElementById('photographer-card__button').addEventListener('click', openModal);
+
+        /* Close form */
+
+        function closeModal(e){
+            e.preventDefault();
+            form.style.display = "none";
+            document.querySelector('main').style.display = "block";
+            document.querySelector('header').style.display = "block";
+        }
+        document.getElementById('close').addEventListener('click', closeModal);
+
+        formFirstInput.addEventListener('change', firstValidation);
+        formLastInput.addEventListener('change', lastValidation);
+        formEmailInput.addEventListener('change', emailValidation);
+        formMessageInput.addEventListener('change', messageValidation);
     })
 }
-
 
 /* Form modal DOM*/
 const form = document.createElement("form");
@@ -527,14 +523,9 @@ const formSubmit = document.createElement("button");
 formSubmit.id = "submit";
 const formClose = document.createElement("button");
 formClose.id = "close";
-
-/* Form validation */
-
-const regexName = /^[A-ZÀÈÉÊa-zàäâéêèëçôîùû][A-ZÀÈÉÊa-zàäâéêèëçôîùû\-'\s]+$/; // First and last name input validation test
-const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Email input validation test
 const unvalidName = "Veuillez remplir le champ ci-dessus (deux caractères au moins)"; 
 const unvalidEmail = 'Veuillez saisir une adresse mail valide (email@exemple.com)';
-const unvalidMessage = "Veuillez saisir votre message (20 caractères minimum)";
+const unvalidMessage = "Veuillez saisir votre message (20 caractères minimum)";  
 const formFirstError = document.createElement("p");
 formFirstError.className = "form-error__message"  
 formFirstError.innerText = unvalidName;
@@ -546,7 +537,18 @@ formEmailError.className = "form-error__message";
 formEmailError.innerText = unvalidEmail;
 const formMessageError = document.createElement("p");
 formMessageError.className = "form-error__message";
-formMessageError.innerText = unvalidMessage;
+formMessageError.innerText = unvalidMessage; 
+
+const formItems = [formHeading, formFirstLabel, formFirstInput, formFirstError, formLastLabel, formLastInput, formLastError, formEmailLabel, formEmailInput, formEmailError, formMessageLabel, formMessageInput, formMessageError, formSubmit, formClose];
+
+for(let i=0;i<formItems.length;i++){
+    form.appendChild(formItems[i]);
+}  
+
+/* Form validation */
+
+const regexName = /^[A-ZÀÈÉÊa-zàäâéêèëçôîùû][A-ZÀÈÉÊa-zàäâéêèëçôîùû\-'\s]+$/; // First and last name input validation test
+const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Email input validation test    
 
 function firstValidation(){
     if(!regexName.test(formFirstInput.value)){
@@ -613,5 +615,3 @@ function formValidation(){
 }
 
 form.addEventListener('submit', formValidation);
-
-        

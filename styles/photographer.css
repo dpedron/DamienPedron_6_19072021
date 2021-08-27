@@ -3,7 +3,7 @@
 body {
   max-width: 1440px;
   margin: 0 auto;
-  font-family: 'DM Sans', sans-serif;
+  font-family: "DM Sans", sans-serif;
 }
 
 /* HEADER */
@@ -100,7 +100,7 @@ header {
   border-radius: 5px;
   padding: 0;
   margin-right: 20px;
-  font-family: 'DM Sans', sans-serif;
+  font-family: "DM Sans", sans-serif;
   color: white;
   font-size: 1.25em;
   font-weight: 700;
@@ -207,14 +207,16 @@ header {
   color: white;
   background-color: #901C1C;
   padding: 14px;
-  font-weight: 700;
+  font-weight: 400;
+  font-size: 1.125em;
+  width: 170px;
   border: none;
-  border-radius: 5px;
+  border-radius: 5px 5px;
   padding-right: 18px;
 }
 
 .sort-by__select__option {
-  padding: 14px;
+  font-size: 1em;
 }
 
 .likes-counter-and-price {
@@ -415,7 +417,6 @@ header {
 }
 
 /* MEDIAS QUERIES */
-/* TABLET */
 @media (max-width: 1024px) {
   /* HEADER */
   header {
@@ -527,7 +528,6 @@ header {
   }
 }
 
-/* MOBILE */
 @media (max-width: 768px) {
   #photographer-form {
     margin: 0;

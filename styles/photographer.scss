@@ -6,7 +6,7 @@
 body{
     max-width: 1440px;
     margin: 0 auto;
-    font-family: 'DM Sans', sans-serif;
+    font-family: $font;
 }
 
 /* HEADER */
@@ -66,7 +66,7 @@ header{
             font-size: 1.125em;
             color: $primary-color;
             padding: 3px 7px;
-            border: 1px solid #C4C4C4;
+            border: 1px solid $border-color;
             border-radius: 11px;
             &--selected, &:hover{
                 background-color: $primary-color;
@@ -86,7 +86,7 @@ header{
     border-radius: 5px;
     padding: 0;
     margin-right: 20px;
-    font-family: 'DM Sans', sans-serif;
+    font-family: $font;
     color: white;
     font-size: 1.25em;
     font-weight: 700;
@@ -98,7 +98,7 @@ header{
     max-width: 599px;
     margin: 62px auto;
     flex-direction: column;
-    background-color: #DB8876;
+    background-color: $bg-color;
     padding: 20px 35px 35px 35px;
     border-radius: 5px;
     h1{
@@ -175,12 +175,14 @@ header{
         color: white;
         background-color: $primary-color;
         padding: 14px;
-        font-weight: 700;
+        font-weight: 400;
+        font-size: 1.125em;
+        width: 170px;
         border: none;
-        border-radius: 5px;
+        border-radius: 5px 5px;
         padding-right: 18px;
         &__option{
-            padding: 14px;
+            font-size: 1em;
         }
     }
 }
@@ -191,7 +193,7 @@ header{
     right: 36px;
     display: flex;
     justify-content: space-between;
-    background-color: #DB8876;
+    background-color: $bg-color;
     width: 376px;
     border-radius: 5px 5px 0 0;
     padding: 0px 30px;
@@ -335,8 +337,6 @@ header{
 
 /* MEDIAS QUERIES */
 
-/* TABLET */
-
 @media (max-width: 1024px){
 
     /* HEADER */
@@ -456,8 +456,6 @@ header{
         }
     }
 }
-
-/* MOBILE */
 
 @media (max-width: 768px){
     #photographer-form{

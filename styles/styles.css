@@ -3,7 +3,7 @@
 body {
   max-width: 1440px;
   margin: 20px auto 0 auto;
-  font-family: 'DM Sans', sans-serif;
+  font-family: "DM Sans", sans-serif;
 }
 
 /* HEADER */
@@ -178,7 +178,6 @@ h1 {
 }
 
 /* MEDIAS QUERIES */
-/* TABLET */
 @media (max-width: 1024px) {
   .banner {
     display: block;
@@ -200,7 +199,6 @@ h1 {
   }
 }
 
-/* MOBILE */
 @media (max-width: 768px) {
   .logo {
     margin: 10px 50px 0 20px;
