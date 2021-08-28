@@ -122,6 +122,7 @@ window.onload = function() {
         sortByLabel.innerText = "Trier par";
         const sortBySelect = document.createElement("select");
         sortBySelect.className = "sort-by__select";
+        sortBySelect.ariaLabel = "trier par";
         const sortOptions = ['Popularité', 'Date', 'Titre'];
         const sortOptionsValue = ['popularity', 'date', 'title']
         const sortByOption = document.createElement("option");        
@@ -219,6 +220,7 @@ window.onload = function() {
                     allPictureCard.forEach(element => {
                         if(element.id == "pC_" + _media[i].id){
                             element.style.order = i;
+                            element.firstChild.tabIndex = i+1;
                         }
                     });                
                 }
@@ -265,10 +267,10 @@ window.onload = function() {
                 pictureLink.innerHTML = "";
                 pictureCard.id ="pC_" + _media[i].id;
                 pictureLink.id = "pC-link_" + _media[i].id;
-                    if(_media[i].video){  
-                        video.innerHTML = "";                // The media is a video
-                        pictureLink.appendChild(video);
+                    if(_media[i].video){ 
                         pictureCard.appendChild(videoIcon); 
+                        video.innerHTML = "";                // The media is a video
+                        pictureLink.appendChild(video); 
                         video.appendChild(videoSource);            
                         videoSource.src = "../images/pictures/" + photographerName.innerHTML + "/" + _media[i].video;
                         video.title = _media[i].title;
@@ -279,7 +281,7 @@ window.onload = function() {
                         picture.src = "../images/pictures/" + photographerName.innerHTML + "/" + _media[i].image;
                         picture.alt = _media[i].title;
                     }
-                    pictureCard.appendChild(pictureLink);
+                    pictureCard.prepend(pictureLink);
                     pictureCard.appendChild(pictureDate);
                     pictureCard.appendChild(pictureInfo);
                     pictureDate.innerText = _media[i].date;
@@ -321,6 +323,7 @@ window.onload = function() {
 
         const lightboxModal = document.createElement('dialog');
         lightboxModal.className = "lightbox";
+        lightboxModal.ariaLabel = "image en vue agrandie";
         const mediaContainer = document.createElement('div');
         mediaContainer.className = "media-container";
         const lightboxVideo = document.createElement('video');
@@ -337,10 +340,13 @@ window.onload = function() {
         lightboxFigcaption.className = "lightbox__figure-figcaption";
         const lightboxLeft = document.createElement('button');
         lightboxLeft.className = "lightbox__arrows left-arrow";
+        lightboxLeft.ariaLabel = "média précédent";
         const lightboxRight = document.createElement('button');        
-        lightboxRight.className = "lightbox__arrows right-arrow"
+        lightboxRight.className = "lightbox__arrows right-arrow";
+        lightboxRight.ariaLabel = "média suivant";
         const lightboxClose = document.createElement('button');
         lightboxClose.className = "lightbox__x";
+        lightboxClose.ariaLabel = "fermer";
 
         document.querySelector('body').appendChild(lightboxModal);
 
@@ -362,10 +368,10 @@ window.onload = function() {
                 if("pC-link_" + _media[i].id == e.currentTarget.id){ 
                     if(_media[i].video){                                    // The media is a video
                         mediaContainer.appendChild(lightboxVideo);
-                        lightboxVideo.appendChild(lightboxVideoSource);            
+                        lightboxVideo.appendChild(lightboxVideoSource);    
+                        mediaContainer.appendChild(lightboxVideoTitle);          
                         lightboxVideoSource.src = "../images/pictures/" + photographerName.innerHTML + "/" + _media[i].video;
-                        lightboxVideo.setAttribute("title", _media[i].description);
-                        mediaContainer.appendChild(lightboxVideoTitle);                    
+                        lightboxVideo.setAttribute("title", _media[i].description);                  
                         lightboxVideoTitle.innerText = _media[i].title;
                         mediaPosition = _media.indexOf(_media[i]);    
                     }
@@ -408,7 +414,7 @@ window.onload = function() {
             if(e.currentTarget == document.querySelector(".right-arrow") || e.key === "ArrowRight"){ // Next media                                                      
                 position = mediaPosition + 1;
             }
-            if (e.key !== "ArrowRight" && e.key !== "ArrowLeft" && e.currentTarget !== document.querySelector(".left-arrow") && e.currentTarget !== document.querySelector(".right-arrow")){
+            if (e.key !== "ArrowRight" && e.key !== "ArrowLeft" && e.currentTarget !== document.querySelector(".right-arrow") && e.currentTarget !== document.querySelector(".left-arrow")){
                 position = mediaPosition;
             }
 

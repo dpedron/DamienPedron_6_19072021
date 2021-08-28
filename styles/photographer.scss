@@ -172,6 +172,8 @@ header{
         font-size: 1.125em;
     }
     &__select{
+        display: flex;
+        flex-direction: column;
         color: white;
         background-color: $primary-color;
         padding: 14px;
