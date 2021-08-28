@@ -192,9 +192,10 @@ window.onload = function() {
         pictureLikesNumber.className = "picture-card__info-likes";
         const pictureAddLike = document.createElement("a");
         pictureAddLike.className = "picture-card__info-add-like";
+        pictureAddLike.ariaLabel = "likes";
+        pictureAddLike.href = " ";
         const pictureLikeIcon = document.createElement("i");        
-        pictureLikeIcon.className = "far fa-heart picture-card__info-likes-icon";
-        pictureLikeIcon.setAttribute('aria-label', 'likes');      
+        pictureLikeIcon.className = "far fa-heart picture-card__info-likes-icon";  
 
         /* Sort the media */
         function sortMedia(){
@@ -299,6 +300,7 @@ window.onload = function() {
         /* Likes */
         
         function addOrRemoveLike(e){
+            e.preventDefault();
             let mediaLikeCount = e.currentTarget.previousSibling;
             if(e.currentTarget.className !== "picture-card__info-add-like liked"){           // The media is not already "liked", add a like
                 e.currentTarget.classList.add("liked");
@@ -319,6 +321,14 @@ window.onload = function() {
             element.addEventListener('click', addOrRemoveLike);
         });
 
+        allIconLike.forEach(element => {
+            element.addEventListener('keypress', function (e){
+                if(e.key === 'Enter'){
+                    addOrRemoveLike(e);
+                }
+            });
+        });
+
         /* Lightbox DOM */
 
         const lightboxModal = document.createElement('dialog');
@@ -328,6 +338,7 @@ window.onload = function() {
         mediaContainer.className = "media-container";
         const lightboxVideo = document.createElement('video');
         lightboxVideo.className = "lightbox__video";
+        lightboxVideo.tabIndex = "0";
         lightboxVideo.setAttribute('controls', "");
         const lightboxVideoSource = document.createElement('source');
         const lightboxVideoTitle = document.createElement('p');
@@ -336,6 +347,7 @@ window.onload = function() {
         lightboxFigure.className = "lightbox__figure";
         const lightboxPicture = document.createElement('img');
         lightboxPicture.className = "lightbox__figure-picture";
+        lightboxPicture.tabIndex = "0";
         const lightboxFigcaption = document.createElement('figcaption');
         lightboxFigcaption.className = "lightbox__figure-figcaption";
         const lightboxLeft = document.createElement('button');
@@ -544,8 +556,12 @@ formEmailError.innerText = unvalidEmail;
 const formMessageError = document.createElement("p");
 formMessageError.className = "form-error__message";
 formMessageError.innerText = unvalidMessage; 
+const formMessageValidation = document.createElement("div");
+formMessageValidation.className ="form-validation";
+formMessageValidation.innerHTML = "<br><br>Votre message a bien été transmis.<br>Nous vous remercions."
 
-const formItems = [formHeading, formFirstLabel, formFirstInput, formFirstError, formLastLabel, formLastInput, formLastError, formEmailLabel, formEmailInput, formEmailError, formMessageLabel, formMessageInput, formMessageError, formSubmit, formClose];
+
+const formItems = [formHeading, formFirstLabel, formFirstInput, formFirstError, formLastLabel, formLastInput, formLastError, formEmailLabel, formEmailInput, formEmailError, formMessageLabel, formMessageInput, formMessageError, formSubmit, formClose,formMessageValidation];
 
 for(let i=0;i<formItems.length;i++){
     form.appendChild(formItems[i]);
@@ -617,7 +633,8 @@ function formValidation(){
     document.querySelector('main').style.display = "block";
     document.querySelector('header').style.display = "block";
     console.log(formFirstInput.value + " " + formLastInput.value + " a laissé le message suivant : " + formMessageInput.value + " , il souhaite être contacté à l'adresse suivante : " + formEmailInput.value);
-    form.reset();
+    formMessageValidation.style.display = "block";
 }
 
 form.addEventListener('submit', formValidation);
+
