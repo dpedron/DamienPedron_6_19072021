@@ -216,16 +216,17 @@ window.onload = function() {
                     _media = _media.sort(sortTitle);
                     break;
                 }
+
+                picturesSection.innerHTML = "";
                 
                 for(let i=0;i<_media.length;i++){ 
                     allPictureCard.forEach(element => {
                         if(element.id == "pC_" + _media[i].id){
-                            element.style.order = i;
-                            element.firstChild.tabIndex = i+1;
+                            picturesSection.appendChild(element);
                         }
                     });                
                 }
-        
+
                 function sortPopularity(a, b){               // function to order by popularity
                     if(a.likes>b.likes){
                         return(-1);
@@ -338,7 +339,6 @@ window.onload = function() {
         mediaContainer.className = "media-container";
         const lightboxVideo = document.createElement('video');
         lightboxVideo.className = "lightbox__video";
-        lightboxVideo.tabIndex = "0";
         lightboxVideo.setAttribute('controls', "");
         const lightboxVideoSource = document.createElement('source');
         const lightboxVideoTitle = document.createElement('p');
@@ -455,7 +455,7 @@ window.onload = function() {
                 lightboxVideoTitle.innerText = _media[position].title;
                 mediaPosition = _media.indexOf(_media[position]);  
             }
-            mediaContainer.appendChild(lightboxClose);  
+            mediaContainer.appendChild(lightboxClose);
 
             if(e.key == "Escape"){                                          // "Escape" to close
                 closeLigthbox();

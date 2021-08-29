@@ -534,7 +534,7 @@ header {
     justify-self: right;
   }
   /* LIGHTBOX */
-  .lightbox__figure-figcaption {
+  .lightbox__figure-figcaption, .lightbox__video-title {
     font-size: 0.875em;
   }
   .lightbox .media-container {
