@@ -439,6 +439,11 @@ header {
   height: 42px;
 }
 
+/* FOCUS */
+*:-moz-focusring {
+  outline: 3px solid black;
+}
+
 /* MEDIAS QUERIES */
 @media (max-width: 1024px) {
   /* HEADER */

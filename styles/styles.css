@@ -177,6 +177,11 @@ h1 {
   margin: 6px 0 0 0;
 }
 
+/* FOCUS */
+*:-moz-focusring {
+  outline: 3px solid black;
+}
+
 /* MEDIAS QUERIES */
 @media (max-width: 1024px) {
   .banner {
