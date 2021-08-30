@@ -87,6 +87,7 @@ window.onload = function() {
             e.preventDefault();
             const selectedTag = e.currentTarget;
             const allPictureCard = document.querySelectorAll(".picture-card");
+            
             for(let i=0;i<_media.length;i++){
                 if(selectedTag.innerText == "#"+_media[i].tags.join()){                  // A filter is selected ...
                     document.getElementById('pC_' + _media[i].id).style.display = "block";// ... show all selected media ...
@@ -429,7 +430,7 @@ window.onload = function() {
             if(position == _media.length){                                  // This is the last picture go back to the first
                 position = 0;
             }
-            if(position == -1){                                             // This is the first picture and click to see the last
+            if(position == -1){                                             // This is the first picture, click to see the last
                 position = _media.length - 1;
             }
 
@@ -452,7 +453,7 @@ window.onload = function() {
                 lightboxVideoTitle.innerText = _media[position].title;
                 mediaPosition = _media.indexOf(_media[position]);
                 lightboxVideo.focus();   
-            }
+            } 
             mediaContainer.appendChild(lightboxClose);
         }        
 

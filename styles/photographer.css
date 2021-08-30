@@ -474,9 +474,6 @@ header {
     max-width: 120px;
     height: 120px;
   }
-  .photographer-card .tag {
-    margin-bottom: 15px;
-  }
   .photographer-card .tag__link {
     font-size: 0.8125em;
   }
@@ -552,7 +549,7 @@ header {
   .lightbox__x {
     width: 12px;
     height: 12px;
-    right: -50px;
+    right: -22px;
   }
 }
 
