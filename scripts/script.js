@@ -23,8 +23,8 @@ window.onload = function() {
   headerTag.className = "tag";
   const headerTagLink = document.createElement("a");
   headerTagLink.className = "tag__link";
-  headerTagLink.setAttribute("role", "link");
   headerTagLink.href = " ";
+  const headerTagLinkSpan = document.createElement("span");
 
   document.querySelector("header").appendChild(categories);
   categories.appendChild(headerTags);
@@ -39,7 +39,7 @@ window.onload = function() {
   const photographerPortrait = document.createElement("img");
   photographerPortrait.src = "./images/pictures/portraits/"
   photographerPortrait.className = "photographer-card__picture";
-  photographerPortrait.setAttribute('alt','""');
+  photographerPortrait.setAttribute('alt',"");
   const photographerName = document.createElement("h2");
   photographerName.className = "photographer-card__name";
   const photographerLocation = document.createElement("p");
@@ -55,8 +55,7 @@ window.onload = function() {
   const photographerTagLink = document.createElement("a");
   photographerTagLink.className = "tag__link";
   photographerTagLink.href = "";
-  const hashtag = document.createElement("span");
-  hashtag.setAttribute('aria-hidden', 'true');
+  const photographerTagLinkSpan = document.createElement("span");
 
   photographerLink.appendChild(photographerPortrait);
   photographerLink.appendChild(photographerName);
@@ -85,9 +84,9 @@ window.onload = function() {
     let allUniqueFilters = [...new Set(allFilters)]; // ... and select only one by name ...
 
     for(let i=0;i<allUniqueFilters.length;i++){     // ... add them to the header
-      headerTagLink.innerText = allUniqueFilters[i];
-      hashtag.innerText = "#";
-      headerTagLink.prepend(hashtag);
+      headerTagLink.ariaLabel = allUniqueFilters[i];
+      headerTagLinkSpan.innerText = "#" + allUniqueFilters[i];
+      headerTagLink.appendChild(headerTagLinkSpan);
       headerTag.appendChild(headerTagLink);
       headerTags.appendChild(headerTag.cloneNode(true));
     }
@@ -97,16 +96,16 @@ window.onload = function() {
     for(let i=0;i<photographers.length;i++){
         photographerLink.href = "./pages/photographer.html?id=" + photographers[i].id;
         photographerPortrait.src = "./images/pictures/portraits/" + photographers[i].portrait;
-        photographerPortrait.alt = " ";
+        photographerPortrait.alt = "";
         photographerName.innerText = photographers[i].name;
         photographerLocation.innerText = photographers[i].city + ", " + photographers[i].country;
         photographerTagline.innerText = photographers[i].tagline;
         photographerPrice.innerText = photographers[i].price + "€/jour";
         photographerTags.innerHTML = "";
         for(let j=0;j<photographers[i].tags.length;j++){
-            photographerTagLink.innerText = photographers[i].tags[j];
-            hashtag.innerText = "#";
-            photographerTagLink.prepend(hashtag);
+            photographerTagLinkSpan.innerText = "#" + photographers[i].tags[j];
+            photographerTagLink.ariaLabel = photographers[i].tags[j];
+            photographerTagLink.appendChild(photographerTagLinkSpan);
             photographerTag.appendChild(photographerTagLink);
             photographerTags.appendChild(photographerTag.cloneNode(true));
         }

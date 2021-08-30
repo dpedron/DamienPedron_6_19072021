@@ -23,7 +23,7 @@ window.onload = function() {
     photographerTag.className = "tag";
     const photographerTagLink = document.createElement("a");
     photographerTagLink.className = "tag__link";
-    photographerTagLink.href = " ";
+    photographerTagLink.href = "";
     const hashtag = document.createElement("span");
     hashtag.setAttribute('aria-hidden', 'true');
     const photographerButton = document.createElement("button");
@@ -31,7 +31,7 @@ window.onload = function() {
     photographerButton.setAttribute('type', 'button')
     const photographerPortrait = document.createElement("img");
     photographerPortrait.className = "photographer-card__picture";
-    photographerPortrait.alt = " ";
+    photographerPortrait.alt = "";
 
     const photographerInfoItems = [photographerName, photographerLocation, photographerTagline, photographerTags];    
     const photographerCardItems = [photographerInfo, photographerButton, photographerPortrait];
@@ -69,6 +69,7 @@ window.onload = function() {
                 photographerPortrait.src = "../images/pictures/Photographers ID Photos/" + _photographer[i].portrait;
                 for(let j=0;j<_photographer[i].tags.length;j++){
                     photographerTagLink.innerText = _photographer[i].tags[j];
+                    photographerTagLink.ariaLabel = _photographer[i].tags[j];
                     hashtag.innerText = "#";
                     photographerTagLink.prepend(hashtag);
                     photographerTag.appendChild(photographerTagLink);
@@ -173,7 +174,7 @@ window.onload = function() {
         pictureCard.className = "picture-card";
         const pictureLink = document.createElement("a");
         pictureLink.className = "picture-card__link";
-        pictureLink.href = " ";
+        pictureLink.href = "";
         const picture = document.createElement("img");
         picture.className = "picture-card__link-image";
         const video = document.createElement("video");
@@ -193,7 +194,7 @@ window.onload = function() {
         const pictureAddLike = document.createElement("a");
         pictureAddLike.className = "picture-card__info-add-like";
         pictureAddLike.ariaLabel = "likes";
-        pictureAddLike.href = " ";
+        pictureAddLike.href = "";
         const pictureLikeIcon = document.createElement("i");        
         pictureLikeIcon.className = "far fa-heart picture-card__info-likes-icon";  
 

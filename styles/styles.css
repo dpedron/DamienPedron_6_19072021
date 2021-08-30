@@ -162,13 +162,13 @@ h1 {
 }
 
 .photographer-card__description {
-  font-size: 0.625em;
+  font-size: 0.7em;
   margin: 3px 0;
 }
 
 .photographer-card__price {
   color: #757575;
-  font-size: 0.5625em;
+  font-size: 0.7em;
   margin: 0;
 }
 
