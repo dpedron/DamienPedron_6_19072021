@@ -82,22 +82,27 @@ window.onload = function() {
         /* Media filter */
 
         const allTags = document.querySelectorAll(".tag__link");
+        let filteredMedia = [];
 
         function mediaFilter(e){
             e.preventDefault();
             const selectedTag = e.currentTarget;
             const allPictureCard = document.querySelectorAll(".picture-card");
+            filteredMedia = [];                                                            // Empty the filtered array
             
             for(let i=0;i<_media.length;i++){
                 if(selectedTag.innerText == "#"+_media[i].tags.join()){                  // A filter is selected ...
                     document.getElementById('pC_' + _media[i].id).style.display = "block";// ... show all selected media ...
+                    filteredMedia.push(_media[i]);                                         // ... add filtered media to an array ...
                 } else {
                     document.getElementById('pC_' + _media[i].id).style.display = "none";// ... and close all non-selected media
                 }
             }
             
             if(selectedTag.classList.contains("tag__link--selected")){                 // The selected filter is already selected ...
-                selectedTag.classList.remove("tag__link--selected");                   // ... unselect him ...               
+                selectedTag.classList.remove("tag__link--selected");                    // ... unselect him ...  
+                sortMedia();                                                            // ... sort the media ...             
+                filteredMedia = _media;                                                 // ... add all media to filtered array ...
                 allPictureCard.forEach(element => {                                    // ... show all media of the photographer
                     element.style.display = "block";                    
                 });
@@ -370,6 +375,15 @@ window.onload = function() {
         /* Open and create lightbox */
 
         function openLigthbox(e){ 
+
+            function getArraysIntersection(a1, a2){
+                return  a1.filter(function(n) { return a2.indexOf(n) !== -1;});
+            }
+            
+            if(filteredMedia.length != 0){                                  // A filter is active ...
+                _media = getArraysIntersection(_media, filteredMedia);      // ... show only filtered media
+            }
+
             e.preventDefault();
             mediaContainer.innerHTML = "";  
             lightboxModal.appendChild(lightboxLeft);
@@ -412,9 +426,11 @@ window.onload = function() {
         /* Close lightbox */
 
         function closeLigthbox(){
+            _media= media.filter(m => m.photographerId == id);
             lightboxModal.style.display = "none";
             document.querySelector('main').style.display = "block";
             document.querySelector('header').style.display = "block";
+            console.log(_media)
         }
 
         lightboxClose.addEventListener('click', closeLigthbox);
@@ -425,7 +441,7 @@ window.onload = function() {
 
         function lightboxNavigation(){
 
-            mediaContainer.innerHTML = "";
+            mediaContainer.innerHTML = "";                
 
             if(position == _media.length){                                  // This is the last picture go back to the first
                 position = 0;
