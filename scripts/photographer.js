@@ -563,6 +563,7 @@ const formSubmit = document.createElement("button");
 formSubmit.id = "submit";
 const formClose = document.createElement("button");
 formClose.id = "close";
+formClose.ariaLabel = "fermer le formulaire"
 const unvalidName = "Veuillez remplir le champ ci-dessus (deux caractères au moins)"; 
 const unvalidEmail = 'Veuillez saisir une adresse mail valide (email@exemple.com)';
 const unvalidMessage = "Veuillez saisir votre message (20 caractères minimum)";  
