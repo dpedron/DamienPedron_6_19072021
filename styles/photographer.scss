@@ -353,10 +353,10 @@ header{
 }
 
 /* FOCUS */
-
-*:-moz-focusring{
-    outline: 3px solid black;
-}
+*:focus-visible {
+    outline: 4px solid black;
+    outline-offset: .6rem;
+  }
 
 /* MEDIAS QUERIES */
 
