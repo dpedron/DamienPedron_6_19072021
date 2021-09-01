@@ -53,7 +53,8 @@ window.onload = function() {
         photographers = data.photographers;                                         // All photographers data
         _photographer = photographers.filter(p => p.id == id);                      // Selected photographer data
         media = data.media;                                                         // All media
-        _media= media.filter(m => m.photographerId == id);                          // Selected photographer media
+        _media= media.filter(m => m.photographerId == id);                          // Selected photographer media        
+        let filteredMedia = _media.slice(0);
 
 
         for(let i=0;i<_photographer.length; i++){
@@ -82,7 +83,6 @@ window.onload = function() {
         /* Media filter */
 
         const allTags = document.querySelectorAll(".tag__link");
-        let filteredMedia = [];
 
         function mediaFilter(e){
             e.preventDefault();
@@ -102,7 +102,7 @@ window.onload = function() {
             if(selectedTag.classList.contains("tag__link--selected")){                 // The selected filter is already selected ...
                 selectedTag.classList.remove("tag__link--selected");                    // ... unselect him ...  
                 sortMedia();                                                            // ... sort the media ...             
-                filteredMedia = _media;                                                 // ... add all media to filtered array ...
+                filteredMedia = _media.slice(0);                                       // ... add all media to filtered array ...
                 allPictureCard.forEach(element => {                                    // ... show all media of the photographer
                     element.style.display = "block";                    
                 });
@@ -392,26 +392,26 @@ window.onload = function() {
             lightboxModal.style.display = "flex";
             document.querySelector('main').style.display = "none";
             document.querySelector('header').style.display = "none";
-            for(let i=0;i<_media.length;i++){
-                if("pC-link_" + _media[i].id == e.currentTarget.id){ 
-                    if(_media[i].video){                                    // The media is a video
+            for(let i=0;i<filteredMedia.length;i++){
+                if("pC-link_" + filteredMedia[i].id == e.currentTarget.id){ 
+                    if(filteredMedia[i].video){                                    // The media is a video
                         mediaContainer.appendChild(lightboxVideo);
                         lightboxVideo.appendChild(lightboxVideoSource);    
                         mediaContainer.appendChild(lightboxVideoTitle);          
-                        lightboxVideoSource.src = "../images/pictures/" + photographerName.innerHTML + "/" + _media[i].video;
-                        lightboxVideo.setAttribute("title", _media[i].description);                  
-                        lightboxVideoTitle.innerText = _media[i].title;
-                        mediaPosition = _media.indexOf(_media[i]);    
+                        lightboxVideoSource.src = "../images/pictures/" + photographerName.innerHTML + "/" + filteredMedia[i].video;
+                        lightboxVideo.setAttribute("title", filteredMedia[i].description);                  
+                        lightboxVideoTitle.innerText = filteredMedia[i].title;
+                        mediaPosition = filteredMedia.indexOf(filteredMedia[i]);    
                         lightboxVideo.focus();  
                     }
-                    if(_media[i].image){                                    // The media is a picture 
+                    if(filteredMedia[i].image){                                    // The media is a picture 
                         mediaContainer.appendChild(lightboxFigure);
                         lightboxFigure.appendChild(lightboxPicture);
                         lightboxFigure.appendChild(lightboxFigcaption);        
-                        lightboxPicture.src = "../images/pictures/" + photographerName.innerHTML + "/" + _media[i].image;
-                        lightboxPicture.setAttribute("alt", _media[i].description);
-                        lightboxFigcaption.innerHTML = _media[i].title;
-                        mediaPosition = _media.indexOf(_media[i]);
+                        lightboxPicture.src = "../images/pictures/" + photographerName.innerHTML + "/" + filteredMedia[i].image;
+                        lightboxPicture.setAttribute("alt",filteredMedia[i].description);
+                        lightboxFigcaption.innerHTML = filteredMedia[i].title;
+                        mediaPosition = filteredMedia.indexOf(filteredMedia[i]);
                         lightboxPicture.focus();    
                     }
                 } 
@@ -443,31 +443,31 @@ window.onload = function() {
 
             mediaContainer.innerHTML = "";                
 
-            if(position == _media.length){                                  // This is the last picture go back to the first
+            if(position == filteredMedia.length){                                  // This is the last picture go back to the first
                 position = 0;
             }
             if(position == -1){                                             // This is the first picture, click to see the last
-                position = _media.length - 1;
+                position = filteredMedia.length - 1;
             }
 
-            if(_media[position].image){                                     // The media new is a picture 
+            if(filteredMedia[position].image){                                     // The media new is a picture 
                 mediaContainer.appendChild(lightboxFigure);
                 lightboxFigure.appendChild(lightboxPicture);
                 lightboxFigure.appendChild(lightboxFigcaption);        
-                lightboxPicture.src = "../images/pictures/" + photographerName.innerHTML + "/" + _media[position].image;
-                lightboxPicture.setAttribute("alt", _media[position].description);
-                lightboxFigcaption.innerHTML = _media[position].title;
-                mediaPosition = _media.indexOf(_media[position]);
+                lightboxPicture.src = "../images/pictures/" + photographerName.innerHTML + "/" + filteredMedia[position].image;
+                lightboxPicture.setAttribute("alt", filteredMedia[position].description);
+                lightboxFigcaption.innerHTML = filteredMedia[position].title;
+                mediaPosition = filteredMedia.indexOf(filteredMedia[position]);
                 lightboxPicture.focus();                
             }
-            if(_media[position].video){                                     // The media new is a video
+            if(filteredMedia[position].video){                                     // The media new is a video
                 mediaContainer.appendChild(lightboxVideo);
                 lightboxVideo.appendChild(lightboxVideoSource);            
-                lightboxVideoSource.src = "../images/pictures/" + photographerName.innerHTML + "/" + _media[position].video;
-                lightboxVideo.setAttribute("title", _media[position].description);
+                lightboxVideoSource.src = "../images/pictures/" + photographerName.innerHTML + "/" + filteredMedia[position].video;
+                lightboxVideo.setAttribute("title", filteredMedia[position].description);
                 mediaContainer.appendChild(lightboxVideoTitle);               
-                lightboxVideoTitle.innerText = _media[position].title;
-                mediaPosition = _media.indexOf(_media[position]);
+                lightboxVideoTitle.innerText = filteredMedia[position].title;
+                mediaPosition = filteredMedia.indexOf(filteredMedia[position]);
                 lightboxVideo.focus();   
             } 
             mediaContainer.appendChild(lightboxClose);

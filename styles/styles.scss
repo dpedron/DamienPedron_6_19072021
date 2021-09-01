@@ -143,10 +143,11 @@ h1{
 
 /* FOCUS */
 
-*:-moz-focusring{
-    outline: 3px solid black;
-}
-
+*:focus-visible {
+    outline: 4px solid black;
+    outline-offset: .6rem;
+  }
+  
 /* MEDIAS QUERIES */
 
 @media (max-width: 1024px){
