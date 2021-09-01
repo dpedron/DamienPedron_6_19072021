@@ -430,7 +430,6 @@ window.onload = function() {
             lightboxModal.style.display = "none";
             document.querySelector('main').style.display = "block";
             document.querySelector('header').style.display = "block";
-            console.log(_media)
         }
 
         lightboxClose.addEventListener('click', closeLigthbox);
@@ -480,13 +479,11 @@ window.onload = function() {
             } 
             if(e.key === "ArrowRight"){                                        // Next media                                                      
                 position = mediaPosition + 1;
-                console.log(position)
                 lightboxNavigation();
             }
             if(e.key == "Escape"){                                          // "Escape" to close
                 closeLigthbox();
             }
-            console.log(position)
         }
 
         function lightboxClick(e){          
